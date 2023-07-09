@@ -1,0 +1,115 @@
+<!-- <div class="container">
+  <div class="sectionTitle container">
+    <h3>Our Jewelry Selection</h3>
+    <h5>We Develop Create Custom Jewels.</h5>
+    <div class="shape-section">
+      <figure>
+        <img src="assets/images/shape.svg" />
+      </figure>
+    </div>
+  </div>
+  <div class="coll__ec">
+    <figure *ngFor="let slide of slider">
+      <div class="">
+        <img [src]="slide.image.sm" [alt]="slide.name" />
+        <!-- <img src="assets/images/1.jpg" /> 
+      </div>
+      <h2>{{ slide.name }}</h2>
+    </figure> -->
+    <!-- <figure>
+      <div class="">
+        <img src="assets/images/2.jpg" />
+      </div>
+      <h2>Ear Rings <span>2958+ Designs</span></h2>
+    </figure>
+    <figure>
+      <div class="">
+        <img src="assets/images/3.jpg" />
+      </div>
+      <h2>Pendants <span>3289+ Designs</span></h2>
+    </figure>
+    <figure>
+      <div class="">
+        <img src="assets/images/4.jpg" />
+      </div>
+      <h2>Bangles <span>4000+ Designs</span></h2>
+    </figure>
+    <figure>
+      <div class="">
+        <img src="assets/images/5.jpg" />
+      </div>
+      <h2>Mangalsutra <span>1458+ Designs</span></h2>
+    </figure>
+    <figure>
+      <div class="">
+        <img src="assets/images/1.jpg" />
+      </div>
+      <h2>Rings <span>5862+ Designs</span></h2>
+    </figure> -->
+  <!-- </div>
+</div>
+
+<div class="banner">
+  <div class="container" *ngIf="ads | async; let data">
+    <figure *ngIf="data.data.docs?.length">
+      <img [src]="data.data.docs[0].file.md" />
+    </figure>
+  </div>
+</div> -->
+
+
+<section id="shopRings">
+  <div class="sectionTitle">
+     <h3>New <span>Arrivels</span></h3>
+     <h5>know more about our latest collection</h5>
+  </div>
+  <div class="d-carousel-cener owl-carousel">
+    <ng-container *ngFor="let slide of slider">
+      <div class="dc-inner">
+         <a [href]="slide.redirectUrl" target="_blank">
+          <img [src]="slide.image.sm" [alt]="slide.name" />
+            <div class="dc-containt">
+               <h2>{{ slide.name }}</h2>
+               <!-- <p>Bar Set Anniversary Ring</p> -->
+            </div>
+         </a>
+      </div>
+    </ng-container>
+     <!-- <div class="dc-inner">
+        <a href="single- ">
+           <img alt="ring" src="images/carousel/2.png" >
+           <div class="dc-containt">
+              <h2>Round</h2>
+              <p>Bar Set Anniversary Ring</p>
+           </div>
+        </a>
+     </div>
+     <div class="dc-inner">
+        <a href="single- ">
+           <img alt="ring" src="images/carousel/3.png" >
+           <div class="dc-containt">
+              <h2>Pear</h2>
+              <p>Bar Set Anniversary Ring</p>
+           </div>
+        </a>
+     </div>
+     <div class="dc-inner">
+        <a href="single- ">
+           <img alt="ring" src="images/carousel/4.png" >
+           <div class="dc-containt">
+              <h2>Radiant</h2>
+              <p>Bar Set Anniversary Ring</p>
+           </div>
+        </a>
+     </div>
+     <div class="dc-inner">
+        <a href="single- ">
+           <img alt="ring" src="images/carousel/5.png" >
+           <div class="dc-containt">
+              <h2>Ovel</h2>
+              <p>Bar Set Anniversary Ring</p>
+           </div>
+        </a>
+     </div> -->
+  </div>
+</section>

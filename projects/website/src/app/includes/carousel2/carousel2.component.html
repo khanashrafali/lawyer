@@ -1,0 +1,39 @@
+<style>
+  .owl-carousel .owl-item {
+    overflow: unset;
+  }
+</style>
+<!--Slider-->
+<section id="shopRings" style="display: none">
+  <div class="sectionTitle container">
+    <h3>Our Jewelry Selection 2</h3>
+    <h5>We Develop Create Custom Jewels.</h5>
+    <div class="shape-section">
+      <figure>
+
+        <img src="assets/images/shape.svg" />
+      </figure>
+    </div>
+  </div>
+  <div class="d-carousel-cener owl-carousel">
+    <div *ngFor="let slide of slider" class="dc-inner">
+      <a [href]="slide.redirectUrl" target="_blank">
+        <!-- <picture>
+          <source
+            *ngFor="let f of getSrcSet(slide.image)"
+            [media]="{ minWidth: f.width }"
+            [srcset]="f.file"
+          /> -->
+
+        <!-- [srcset]="getSrcSet(p.images[0]) || 'assets/img/patients/patient.jpg'" -->
+        <img [src]="slide.image.sm" [alt]="slide.name" />
+        <!-- </picture> -->
+
+        <!-- <div class="dc-containt"> -->
+        <!-- <h2>Cushion</h2> -->
+        <!-- <p>Bar Set Anniversary Ring</p> -->
+        <!-- </div>q -->
+      </a>
+    </div>
+  </div>
+</section>

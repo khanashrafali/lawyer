@@ -1,0 +1,20 @@
+<ng-container *ngIf="p">
+  <lib-ngx-image-zoom
+    id="zoom"
+    style="display: block; height: 100%; width: 100%; overflow: hidden"
+    [thumbImage]="p.images[selectedImg]"
+    [fullImage]="p.images[selectedImg]"
+  ></lib-ngx-image-zoom>
+
+  <br />
+
+  <ng-image-slider
+    (imageClick)="clickOnSlide($event)"
+    [animationSpeed]="0.2"
+    [imagePopup]="false"
+    [images]="images"
+    #nav
+  ></ng-image-slider>
+  <br />
+  <br />
+</ng-container>

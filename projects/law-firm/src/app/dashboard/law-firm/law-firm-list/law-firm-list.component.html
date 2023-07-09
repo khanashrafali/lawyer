@@ -1,0 +1,225 @@
+<div class="page-wrapper">
+    <div class="content container-fluid">
+      <!-- Page Header -->
+      <div class="page-header">
+        <div class="row">
+          <div class="col-sm-7 col-auto">
+            <h3 class="page-title">Law Firm</h3>
+          </div>
+          <div class="col-sm-5 col">
+            <ng-container>
+              <button [routerLink]="['add']" class="btn btn-primary btn-sm float-right mt-2">
+                <i class="fa fa-plus"></i> Add
+              </button>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+      <!-- /Page Header -->
+  
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card">
+            <!-- filter section -->
+            <!-- <form [formGroup]="filterForm" (ngSubmit)="applyFilter(filterForm.value)">
+              <div class="card-header">
+                <div class="row">
+                  <div class="col-sm-7 col-auto">
+                    <h4 class="page-title">Filter</h4>
+                  </div>
+                  <div class="col-sm-5 col">
+                    <div class="float-right mt-2">
+                      <button type="submit" class="btn btn-sm btn-primary mr-2" *ngIf="showFilter">Apply</button>
+                      <button
+                        (click)="clearFilter()"
+                        type="button"
+                        class="btn btn-sm btn-info mr-2"
+                        *ngIf="isFilterApplied"
+                      >
+                        Clear
+                      </button>
+                      <button type="button" (click)="showFilter = !showFilter" class="btn btn-primary btn-sm">
+                        <i class="fa" [ngClass]="showFilter ? 'fa-eye-slash' : 'fa-eye'"></i>
+                        {{ showFilter ? "Hide" : "Show" }}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <ng-container *ngIf="showFilter">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-4 col-md-1">
+                      <div class="form-group">
+                        <label for=""><b> Active</b></label>
+                        <input
+                          formControlName="status"
+                          type="checkbox"
+                          id="status_f"
+                          [ngClass]="filterForm.get('status')?.value ? 'check active' : 'check'"
+                        />
+  
+                        <label for="status_f" class="checktoggle">checkbox</label>
+                      </div>
+                    </div>
+                    <div class="col-8 col-md-3">
+                      <div class="form-group">
+                        <label for=""><b>Created At</b></label>
+                        <mat-form-field class="datepicker w-100" appearance="outline">
+                          <input
+                            placeholder="Date"
+                            formControlName="createdAt"
+                            matInput
+                            [matDatepicker]="picker"
+                            class="p-0 w-100"
+                            readonly
+                          />
+                          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                          <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+  
+                <hr class="m-0 p-0" />
+              </ng-container>
+            </form> -->
+            <!-- filter section -->
+  
+            <div class="card-body">
+              <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                <div class="row w-100">
+                    <!-- (selectedPageSize)="onChangePageSize($event)" -->
+                  <div
+                    class="app-pagesize-dropdown col"
+                    ></div>
+                    <!-- [pageSize]="pageSize" -->
+                  <div class="col">
+                    <div class="d-flex align-content-center float-right">
+                      <!-- <app-search-input
+                        (inputText)="onSearch($event)"
+                        class="float-lg-right"
+                        [placeholder]="'Search By Name'"
+                      ></app-search-input> -->
+                      <!-- <div>
+                        &nbsp;&nbsp;
+                        <button
+                          mat-icon-button
+                          class="alternate-theme primary"
+                          aria-label="Example icon button with a heart icon"
+                        >
+                          <mat-icon (click)="onFilter()">filter_list</mat-icon>
+                        </button>
+                      </div> -->
+                    </div>
+                  </div>
+                </div>
+  
+                <!-- <div class="text-center text-danger" *ngIf="!haveAccess('read', this.authData)">
+                  <b>Unauthorize Access.</b>
+                </div> -->
+  
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="table-responsive">
+                      <table
+                        class="table table-hover table-center mb-0 dataTable no-footer table-bordered table-bordered"
+                        id="DataTables_Table_0"
+                        role="grid"
+                        aria-describedby="DataTables_Table_0_info"
+                      >
+                        <thead>
+                          <tr role="row">
+                            <th>Name</th>
+                            <th style="width: 200px" class="text-center">Access</th>
+                            <th style="width: 200px" class="text-center">Active Status</th>
+                            <th style="width: 200px" class="text-center">Created At</th>
+                            <th class="text-right">Actions &nbsp;</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <ng-container>
+                            <tr role="row">
+                              <td class="sorting_1 cursor">
+                                <h2 class="table-avatar">
+                                  <a href="javascript:void(0)" class="avatar avatar-sm mr-2"
+                                    ><img
+                                      class="avatar-img rounded-circle"
+                                  /></a>
+                                  <a href="javascript:void(0)"> Name </a>
+                                </h2>
+                              </td>
+  
+                              <td class="text-center">Access</td>
+  
+                              <td class="text-center">
+                                <div class="d-flex justify-content-center">
+                                  <input
+                                    type="checkbox"
+                                    id="status_1"
+                                    [ngClass]="true ? 'check active' : 'check'"
+                                    />
+  
+                                  <label
+                                    for="status_1"
+                                    class="checktoggle"
+                                    >checkbox</label
+                                  >
+                                </div>
+                              </td>
+  
+                              <td class="text-center">
+                                created_at
+                              </td>
+  
+                              <td class="text-right">
+                                <div class="actions">
+                                  <button
+                                    class="btn btn-sm btn-outline-success"
+                                    data-toggle="modal"
+                                    [routerLink]="['update', '']"
+                                  >
+                                    <i class="fe fe-pencil"></i> Edit
+                                  </button>
+                                  <!-- <button
+                                    data-toggle="modal"
+                                    *ngIf="!item.status"
+                                    (click)="onDelete(item._id, false)"
+                                    class="btn btn-sm btn-outline-danger"
+                                  >
+                                    <i class="fe fe-trash"></i> Delete
+                                  </button> -->
+                                </div>
+                              </td>
+                            </tr>
+                          </ng-container>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+                <!-- *ngIf="!dataIsLoaded && haveAccess('read', this.authData)" -->
+                <!-- <mat-progress-bar
+                  mode="indeterminate"
+                ></mat-progress-bar> -->
+              </div>
+              <ng-container >
+                <!-- <app-pagination
+                  class="row p-2"
+                  [route]="'/law-firm'"
+                  [pageData]="pageData"
+                  [pageSize]="pageSize"
+                  [currentPage]="page"
+                ></app-pagination> -->
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- <app-delete-modal></app-delete-modal> -->
+  <!-- <app-filter-category></app-filter-category> -->
+  

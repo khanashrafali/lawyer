@@ -1,0 +1,7 @@
+<ng-container *ngIf="control?.touched && showMsg">
+  <div *ngIf="!control.errors && !showOnlyError" class="block valid-feedback">Looks good!</div>
+
+  <div *ngIf="control.errors" class="block invalid-feedback">
+    {{ getErrorMsg() }}
+  </div>
+</ng-container>

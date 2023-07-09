@@ -1,0 +1,115 @@
+<!-- <div class="col-sm-12 col-md-5 mt-3">
+  <div
+    class="dataTables_info"
+    id="DataTables_Table_0_info"
+    role="status"
+    aria-live="polite"
+  >
+    <span class="mt-2 text-sm-center">
+      Showing {{ currentPage * pageSize - (pageSize - 1) }} to
+      {{ currentPage * pageSize }} of {{ pageData.count }} entries
+    </span>
+  </div>
+</div> -->
+<div
+  class="col-12 d-flex justify-content-end mt-3"
+  *ngIf="pages > 1"
+>
+  <div
+    class="dataTables_paginate paging_simple_numbers"
+    id="DataTables_Table_0_paginate"
+  >
+    <ul class="pagination">
+      <li
+        [ngClass]="hasPrev ? '' : 'disabled'"
+        class="paginate_button page-item previous"
+        id="DataTables_Table_0_previous"
+      >
+        <button
+          (click)="onPreviouse(1)"
+          [disabled]="!hasPrev"
+          aria-controls="DataTables_Table_0"
+          data-dt-idx="0"
+          tabindex="0"
+          class="page-link"
+        >
+          Previous
+        </button>
+      </li>
+      <li *ngIf="hasPrev2" class="paginate_button page-item">
+        <button
+          (click)="onPreviouse(2)"
+          aria-controls="DataTables_Table_0"
+          data-dt-idx="1"
+          tabindex="0"
+          class="page-link"
+        >
+          {{ currentPage - 2 }}
+        </button>
+      </li>
+      <li *ngIf="hasPrev" class="paginate_button page-item">
+        <button
+          (click)="onPreviouse(1)"
+          aria-controls="DataTables_Table_0"
+          data-dt-idx="1"
+          tabindex="0"
+          class="page-link"
+        >
+          {{ currentPage - 1 }}
+        </button>
+      </li>
+
+      <li class="paginate_button page-item active">
+        <button
+          aria-controls="DataTables_Table_0"
+          data-dt-idx="1"
+          tabindex="0"
+          class="page-link"
+        >
+          {{ currentPage }}
+        </button>
+      </li>
+
+      <li *ngIf="hasNext" class="paginate_button page-item">
+        <button
+          (click)="onNext(1)"
+          aria-controls="DataTables_Table_0"
+          data-dt-idx="1"
+          tabindex="0"
+          class="page-link"
+        >
+          {{ currentPage + 1 }}
+        </button>
+      </li>
+
+      <li *ngIf="hasNext2" class="paginate_button page-item">
+        <button
+          (click)="onNext(2)"
+          aria-controls="DataTables_Table_0"
+          data-dt-idx="1"
+          tabindex="0"
+          class="page-link"
+        >
+          {{ currentPage + 2 }}
+        </button>
+      </li>
+
+      <li
+        [ngClass]="hasNext ? '' : 'disabled'"
+        class="paginate_button page-item next"
+        id="DataTables_Table_0_next"
+      >
+        <button
+          (click)="onNext(1)"
+          [disabled]="!hasNext"
+          aria-controls="DataTables_Table_0"
+          data-dt-idx="2"
+          tabindex="0"
+          class="page-link"
+        >
+          Next
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>

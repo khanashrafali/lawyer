@@ -1,0 +1,14 @@
+<div class="top-nav-search mb-2">
+  <div class="mt-0">
+    <input
+      type="text"
+      (keyup)="onChangeInput($event)"
+      class="form-control"
+      [placeholder]="placeholder ? placeholder : 'Search here'"
+      placeholder="Search here"
+    />
+    <button class="btn" [disabled]="text?.length" type="button" (click)="onSubmit()">
+      <i class="fa fa-search"></i>
+    </button>
+  </div>
+</div>

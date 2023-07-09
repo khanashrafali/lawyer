@@ -1,0 +1,89 @@
+<div class="left" style="margin-top: 14%;">
+  <div class="row">
+    <div class="col-lg-4 col-md-6 col-sm-8 col-lg-offset-4 col-md-offset-3 col-sm-offset-2">
+      <!-- brand-logo start -->
+      <!-- <div class="brand-logo text-center">
+        <img src="assets/images/logo.jpeg" width="120" alt="brand-logo" />
+      </div> -->
+      <!-- ./brand-logo -->
+      <!-- authfy-login start -->
+      <!-- panel-login start -->
+      <div class="authfy-login" *ngIf="!openVerifyForm">
+        <div class="authfy-panel panel-login text-center active">
+          <div class="authfy-heading">
+            <h3 class="auth-title">Login</h3>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-12 col-sm-12" *ngIf="loginForm">
+              <!-- <form method="post" [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
+                <label>
+                  Phone Number:
+                  <input type="tel" placeholder="Enter your phone number" formControlName="emailOrMobile" required />
+                </label>
+                <button type="submit">Sign In With Phone Number</button>
+              </form> -->
+
+              <div id="recaptcha-container"></div>
+              <form method="post" [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
+                <div class="form-group wrap-input">
+                  <input
+                    class="form-control email"
+                    [ngClass]="
+                      loginForm.get('emailOrMobile')?.touched
+                        ? loginForm.get('emailOrMobile')?.value
+                          ? 'ng-valid-input'
+                          : 'ng-invalid-input'
+                        : ''
+                    "
+                    type="text"
+                    name="email"
+                    placeholder="Email / Mobile *"
+                    formControlName="emailOrMobile"
+                  />
+                  <span class="focus-input"></span>
+                  <app-input-error [control]="loginForm.get('emailOrMobile')!" [fieldName]="'Email Or Mobile'"></app-input-error>
+                </div>
+
+                <div class="form-group">
+                  <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- panel-login start -->
+
+      <!-- verify otp form -->
+      <div class="authfy-login" *ngIf="openVerifyForm">
+        <div class="authfy-panel panel-login text-center active">
+          <div class="authfy-heading">
+            <h3 class="auth-title">Verify OTP</h3>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-12 col-sm-12">
+              <form method="post" [formGroup]="otpForm" (ngSubmit)="onVerifySubmit()">
+                <div class="form-group wrap-input">
+                  <input class="form-control email" type="text" placeholder="OTP *" formControlName="otp" />
+                  <span class="focus-input"></span>
+                  <app-input-error [control]="otpForm.get('otp')!" [fieldName]="'OTP'"></app-input-error>
+                </div>
+
+                <!-- ./remember-row -->
+                <div class="form-group">
+                  <button class="btn btn-lg btn-primary btn-block" type="submit">Verify</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- verify otp form -->
+
+      <!-- ./authfy-login -->
+    </div>
+  </div>
+  <!-- ./row -->
+</div>

@@ -1,0 +1,9 @@
+.rating {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-bottom: 5px;
+}
+.wadd {
+  color: #d9098c !important;
+}

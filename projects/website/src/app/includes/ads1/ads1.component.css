@@ -1,0 +1,20 @@
+@media (max-width: 767px) {
+  .middle-bg {
+    background-image: url('projects/website/src/assets/images/banner-v2.jpg');
+    background-size: cover;
+    padding: 70px;
+  }
+}
+
+.middle-bg {
+    background-image: url('projects/website/src/assets/images/banner-v2.jpg');
+    background-size: cover;
+    padding: 30px;
+}
+
+.coll__ec {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 20px;
+}
+

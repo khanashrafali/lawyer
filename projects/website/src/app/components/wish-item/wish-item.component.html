@@ -1,0 +1,20 @@
+<td class="productImage">
+  <img [src]="wItem?.images[0].sm" alt="" />
+</td>
+<td class="productName" style="white-space: pre-wrap">
+  <h6 class="heading">
+    <b>{{ wItem?.name }}</b>
+  </h6>
+  <a style="cursor: pointer" (click)="addToCart(wItem)">Move To Cart </a>
+</td>
+
+<td class="price">
+  <del><i class="fa fa-inr"></i> {{ wItem.mrp }}</del
+  ><i class="fa fa-inr"></i>
+  {{ wItem.sellingPrice }}
+</td>
+<td>
+  <a class="edit" data-dismiss="alert" aria-label="Close" (click)="deleteitem(wItem._id)" style="cursor: pointer"
+    ><i class="fa fa-trash"></i
+  ></a>
+</td>

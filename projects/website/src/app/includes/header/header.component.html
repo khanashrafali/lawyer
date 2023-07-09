@@ -1,0 +1,424 @@
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet" />
+<div class="header-main">
+  <div class="sticky" style="margin-bottom: 0px">
+    <div class="horizontal-header clearfix">
+      <div class="container-fluid">
+        <a id="horizontal-navtoggle" class="animated-arrow"><span></span></a>
+        <span class="smllogo">
+           <a routerLink="/"><img src="assets/images/logo.png" /></a>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="jumps-prevent" style="padding-top: 0px"></div>
+  <div id="sticky-wrapper" class="sticky-wrapper" style="height: 90px">
+    <div class="horizontal-main clearfix">
+      <div class="horizontal-mainwrapper container-fluid clearfix w-100">
+        <div class="horizontal-overlapbg"></div>
+        <nav class="horizontalMenu clearfix">
+          <ul class="horizontalMenu-list menuu">
+            <li><a [routerLink]="['/']">Home</a>
+             <!-- <span  style="
+              color: black;
+              font-size: 31px;
+              position: absolute;
+              font-weight: bolder;
+              top: 1px;
+              right: 24px;
+          ">x</span> -->
+          </li>
+
+            <li>
+              <span class="horizontalMenu-click"><i class="horizontalMenu-arrow fa fa-angle-down"></i></span
+              ><a [routerLink]="['/categories']">Category<span class="fa fa-caret-down m-0"></span></a>
+              <div class="horizontal-megamenu clearfix">
+                <div class="container">
+                  <div class="megamenu-content">
+                    <div class="row">
+                      <ul class="col link-list" *ngFor="let cat of categories">
+                        <li class="title">{{ cat.name | titlecase }}</li>
+                        <li *ngFor="let sc of cat.subCategories">
+                          <a
+                            [routerLink]="['/products-listing']"
+                            [queryParams]="{
+                              category: cat._id,
+                              subCategory: sc._id,
+                              categoryName1: cat.name,
+                              categoryName2: sc.name
+                            }"
+                            >{{ sc.name | titlecase }}</a
+                          >
+                        </li>
+                      </ul>
+                      <!-- <ul class="col link-list">
+												<li class="title">JEWELLERY</li>
+												<li><a href="#">Bangles Set</a></li>
+												<li><a href="#">Bridal Chura</a></li>
+											</ul>
+											<ul class="col link-list">
+												<li class="title">WOMEN ACCESSORIES</li>
+												<li><a href="#">Custom Bangles</a></li>
+												<li><a href="#">Glass Bangles</a></li>
+											</ul>
+											<ul class="col link-list">
+												<li class="title">MAN</li>
+												<li><a href="#">lorem ipsum</a></li>
+											</ul> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <li>
+              <span class="horizontalMenu-click"><i class="horizontalMenu-arrow fa fa-angle-down"></i></span
+              ><a [routerLink]="['/brands']">Brand<span class="fa fa-caret-down m-0"></span></a>
+              <div class="horizontal-megamenu clearfix">
+                <div class="container">
+                  <div class="megamenu-content">
+                    <div class="row">
+                      <ul class="col link-list" *ngFor="let cat of brands">
+                        <li class="listMenu">
+                          <!-- [queryParams]="getFilter(cat._id)" -->
+                          <div class="row listTitle cursor" [routerLink]="['/products-listing']" [queryParams]="{brand:cat?._id}">
+                            <div style="margin-top: 10px">
+                              <img class="img-thumbnail" [src]="cat.image.xs" [alt]="cat.brandName" />
+                            </div>
+                            <span class="textItem">{{ cat.brandName | titlecase }}</span>
+                          </div>
+                        </li>
+                        <!-- <li><a href="#">lorem ipsum</a></li>
+												<li><a href="#">lorem ipsum</a></li> -->
+                      </ul>
+                      <!-- <ul class="col link-list">
+												<li class="title">BRAND2</li>
+												<li><a href="#">lorem ipsum</a></li>
+												<li><a href="#">lorem ipsum</a></li>
+											</ul>
+											<ul class="col link-list">
+												<li class="title">BRAND3</li>
+												<li><a href="#">lorem ipsum</a></li>
+												<li><a href="#">lorem ipsum</a></li>
+											</ul>
+											<ul class="col link-list">
+												<li class="title">BRAND4</li>
+												<li><a href="#">lorem ipsum</a></li>
+												<li><a href="#">lorem ipsum</a></li>
+											</ul> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li><a [routerLink]="['/about']">About</a></li>
+            <li><a [routerLink]="['/contact-us']">Contact Us</a></li>
+            <li *ngIf="isLogin" class="h_cart navMobileShow">
+              <a [routerLink]="['/order-history']">
+                <span>My Orders</span>
+              </a>
+            </li>
+            <li *ngIf="!isLogin" class="navMobileShow">
+              <a [routerLink]="['/login']">
+                <span>Login</span>
+              </a>
+            </li>
+            <li *ngIf="isLogin" class="navMobileShow">
+              <a href="javascript:void(0)" (click)="logout()">
+                <span>Logout</span>
+              </a>
+            </li>
+          </ul>
+          <ul class="horizontalMenu-list logoo">
+            <li class="hideMenuMobile">
+              <a [routerLink]="['/']">
+                <img src="assets/images/logo.png" />
+              </a>
+            </li>
+          </ul>
+          <ul class="horizontalMenu-list cartt">
+            <li class="input-search">
+              <form>
+                <input (keyup)="searchProduct($event)" type="text" style="color: black" placeholder="type here to search the products" />
+              </form>
+            </li>
+            <li>
+              <div class="cartWishSearchWrap">
+                <a [routerLink]="['/wishlist']">
+                  <span class="wish" *ngIf="wishlistData | async; let wd">
+                    <img src="assets/images/heart.png" />
+                    <b> {{ wd?.length || 0 }}</b>
+                  </span>
+                  <span>Wishlist</span>
+                </a>
+                <a [routerLink]="['/cart']">
+                  <span class="wish" *ngIf="cartData | async; let cart">
+                    <img src="assets/images/cart.png" />
+                    <b> {{ cart.items.length || 0 }} </b>
+                  </span>
+                  <span>My cart</span>
+                </a>
+                <li *ngIf="isLogin" class="h_cart">
+                  <a [routerLink]="['/order-history']">
+                    <span class="wish">
+                      <i class="fa fa-gift"></i>
+                      &nbsp;
+                    </span>
+                    <span>My Orders</span>
+                  </a>
+                </li>
+
+                <li *ngIf="!isLogin">
+                  <a [routerLink]="['/login']">
+                    <span class="wish">
+                      <i class="fa fa-user-circle"></i>
+                      &nbsp;
+                    </span>
+                    <span>Login</span>
+                  </a>
+                </li>
+                <li *ngIf="isLogin">
+                  <a href="javascript:void(0)" (click)="logout()">
+                    <span class="wish">
+                      <i class="fa fa-user-circle"></i>
+                      &nbsp;
+                    </span>
+                    <span>Logout</span>
+                  </a>
+                </li>
+                <a [routerLink]="['/products-listing']" class="" style="display: none">
+                  <i class="fa fa-search"></i>
+                </a>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+  <ul class="horizontalMenu-list cartt mobile-show">
+            <li class="input-search">
+              <form>
+                <input (keyup)="searchProduct($event)" type="text" style="color: black" placeholder="type here to search the products" />
+              </form>
+            </li>
+            
+            <li class="mobileCart">
+              <div class="cartWishSearchWrap">
+                <a [routerLink]="['/wishlist']">
+                  <span class="wish" *ngIf="wishlistData | async; let wd">
+                    <img src="assets/images/heart.png" />
+                    <b> {{ wd?.length || 0 }}</b>
+                  </span>
+                  <span class="mobileHIde">Wishlist</span>
+                </a>
+                <a [routerLink]="['/cart']">
+                  <span class="wish" *ngIf="cartData | async; let cart">
+                    <img src="assets/images/cart.png" />
+                    <b> {{ cart.items.length || 0 }} </b>
+                  </span>
+                  <span class="mobileHIde">My cart</span>
+                </a>
+                
+                <a [routerLink]="['/products-listing']" class="" style="display: none">
+                  <i class="fa fa-search"></i>
+                </a>
+              </div>
+            </li>
+            
+          </ul>
+
+<!-- <header class="row" id="header">
+  <div class="row m0 logo_line">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-5 logo">
+          <a [routerLink]="['/']" class="logo_a"><img src="assets/images/logo.jpeg" /> </a>
+        </div>
+        <div class="col-sm-7 searchSec">
+          <div class="col-sm-12">
+            <div class="fright wishlistCompare">
+              <ul class="nav">
+                <li class="h_cart">
+                  <a [routerLink]="['/wishlist']">
+                    <span class="wish" *ngIf="wishlistData | async; let wd">
+                      <i class="fa fa-heart"></i>
+                      {{ wd?.length || 0 }}
+                    </span>
+                    <span>Wishlist</span>
+                  </a>
+                </li>
+                <li class="h_cart">
+                  <a [routerLink]="['/cart']">
+                    <span class="wish" *ngIf="cartData | async; let cart">
+                      <i class="fa fa-shopping-bag"></i>
+                      {{ cart.items.length || 0 }}
+                    </span>
+                    <span>My cart</span>
+                  </a>
+                  <div class="hclist">
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th class="productImage">Product image</th>
+                            <th class="productName">Product name</th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let ci of (cartData | async)?.items" class="alert" role="alert">
+                            <td class="productImage" *ngIf="ci.product.images?.length">
+                              <img *ngIf="ci.product.images[0].xs" [src]="ci.product.images[0].xs" [alt]="ci.product.name" />
+                            </td>
+                            <td class="productName">
+                              <h6 class="heading">{{ ci.product.name }}</h6>
+                              <div class="input-group spinner">
+                                <input class="form-control" [value]="ci.qty" type="text" />
+                                <div class="input-group-btn-vertical">
+                                  <button class="btn btn-default" (click)="increaseCartItme(ci.product._id)">
+                                    <i class="fa fa-angle-up"></i>
+                                  </button>
+                                  <button class="btn btn-default" (click)="decreaseCartItem(ci.product._id)">
+                                    <i class="fa fa-angle-down"></i>
+                                  </button>
+                                </div>
+                              </div>
+                            </td>
+                            <td>
+                              <a
+                                style="font-size: 20px !important"
+                                (click)="deleteCartItem(ci.product._id)"
+                                href="#"
+                                class="edit"
+                                data-dismiss="alert"
+                                aria-label="Close"
+                                ><i class="fa fa-trash"></i
+                              ></a>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </li>
+
+                <li *ngIf="isLogin" class="h_cart">
+                  <a [routerLink]="['/order-history']">
+                    <span class="wish">
+                      <i class="fa fa-gift"></i>
+                      &nbsp;
+                    </span>
+                    <span>My Orders</span>
+                  </a>
+                </li>
+
+                <li *ngIf="!isLogin">
+                  <a [routerLink]="['/login']">
+                    <span class="wish">
+                      <i class="fa fa-user-circle"></i>
+                      &nbsp;
+                    </span>
+                    <span>Login</span>
+                  </a>
+                </li>
+                <li *ngIf="isLogin">
+                  <a href="javascript:void(0)" (click)="logout()">
+                    <span class="wish">
+                      <i class="fa fa-user-circle"></i>
+                      &nbsp;
+                    </span>
+                    <span>Logout</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <div class="fright searchForm">
+              <div class="input-group">
+                <input type="search" class="form-control" placeholder="Search Products" (keyup)="searchProduct($event)" />
+                <span class="input-group-btn searchIco">
+                  <button [routerLink]="['/products-listing']" class="btn btn-default" type="button">
+                    <i class="fa fa-search"></i>
+                  </button>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <nav class="navbar navbar-default m0 navbar-static-top">
+    <div class="container-fluid container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mainNav">
+          <i class="fa fa-bars"></i> MENU
+        </button>
+      </div>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="nav navbar-nav">
+
+          <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <a [routerLink]="['/']">Home</a>
+          </li>
+
+          <li class="dropdown megaMenu" routerLinkActive="active">
+            <a [routerLink]="['/categories']" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"
+              >Category</a
+            >
+            <ul class="dropdown-menu row m0" role="menu">
+              <li class="listMenu" *ngFor="let cat of categories">
+                <div class="row listTitle">{{ cat.name | titlecase }}</div>
+                <ul class="nav megaInnerMenu">
+                  <li *ngFor="let sc of cat.subCategories">
+                    <a
+                      [routerLink]="['/products-listing']"
+                      [queryParams]="{
+                        category: cat._id,
+                        subCategory: sc._id,
+                        categoryName1: cat.name,
+                        categoryName2: sc.name
+                      }"
+                      >{{ sc.name | titlecase }}</a
+                    >
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+
+		  <li class="logo_middle">
+				<a [routerLink]="['/']" class="logo_a"><img src="assets/images/logo.jpeg" /> </a>
+		  </li>
+
+		  <li class="dropdown megaMenu" routerLinkActive="active">
+            <a [routerLink]="['/brands']" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Brand</a>
+            <ul class="dropdown-menu row m0" role="menu">
+              <li class="listMenu" *ngFor="let cat of brands">
+                <div class="row listTitle cursor" [routerLink]="['/products-listing']" [queryParams]="{ brand: cat._id }">
+                  <div style="margin-top: 10px">
+                    <img class="img-thumbnail" [src]="cat.image.xs" [alt]="cat.brandName" />
+                  </div>
+                  {{ cat.brandName | titlecase }}
+                </div>
+              </li>
+            </ul>
+          </li>
+
+          <li routerLinkActive="active">
+            <a [routerLink]="['/about']">About</a>
+          </li>
+
+          <li class="text-left" routerLinkActive="active">
+            <a [routerLink]="['/contact-us']">Contact Us</a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+</header> -->

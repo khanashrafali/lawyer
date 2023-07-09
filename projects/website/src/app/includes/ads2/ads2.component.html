@@ -1,0 +1,58 @@
+<ng-container *ngIf="ads | async; let adData">
+<!-- <ng-container *ngIf="adData.data.docs.length > 1"> -->
+<!-- <a [href]="adData.data.docs[1].redirectURL" target="_blank"> -->
+<!-- <div class="middle-offer-banner" *ngIf="adData.data.docs?.length"> -->
+<!-- <picture> -->
+<!-- <source -->
+<!-- media="(min-width:1000px)" -->
+<!-- [srcset]="adData.data.docs[1].file.xlg" -->
+<!-- /> -->
+<!-- <source -->
+<!-- media="(min-width:800px)" -->
+<!-- [srcset]="adData.data.docs[1].file.lg" -->
+<!-- /> -->
+<!-- <source -->
+<!-- media="(min-width:500px)" -->
+<!-- [srcset]="adData.data.docs[1].file.md" -->
+<!-- /> -->
+<!-- <source -->
+<!-- media="(min-width:400px)" -->
+<!-- [srcset]="adData.data.docs[1].file.sm" -->
+<!-- /> -->
+
+<!-- <img [src]="adData.data.docs[1].file.lg" /> -->
+<!-- </picture> -->
+<!-- </div> -->
+<!-- </a> -->
+<!-- </ng-container> -->
+<!-- </ng-container> -->
+
+ <div class="container">
+  <div class="sectionTitle container">
+    <h3>Shop By {{data?.heading}}</h3>
+    <h5>We Develop Create Custom Jewels.</h5>
+    <div class="shape-section">
+      <figure>
+        <img src="assets/images/shape.svg" />
+      </figure>
+    </div>
+  </div>
+
+  <div class="">
+    <div class="gender-grid">
+      <figure *ngFor="let cat of categories">
+        <img [src]="cat.image.lg" [alt]="cat.name" />
+        <h2>{{cat?.name}} <a [routerLink]="['/products-listing']" [queryParams]="{ category: cat?._id }">Explore</a></h2>
+      </figure>
+      <!-- <figure>
+        <img src="assets/images/bb.jpg" />
+        <h2>Female <a routerLink="/products-listing">Explore</a></h2>
+      </figure>
+      <figure>
+        <img src="assets/images/cc.jpg" />
+        <h2>Kids <a routerLink="/products-listing">Explore</a></h2>
+      </figure> -->
+    </div>
+  </div>
+</div> 
+

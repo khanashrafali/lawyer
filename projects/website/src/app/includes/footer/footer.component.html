@@ -1,0 +1,102 @@
+<footer class="row">
+  <div class="row m0 topFooter">
+    <div class="container line2">
+      <div class="row">
+        <div class="col-sm-3 widget">
+          <div class="row m0">
+            <h4>About</h4>
+            <p>
+              We provide the best Quality of products to you.We are always here
+              to help our lovely customers.
+            </p>
+            <ul class="list-inline">
+              <li>
+                <a target="_blank" href="http://www.facebook.com/manihar.in"
+                  ><i class="fab fa-facebook-f"></i></a>
+              </li>
+              <!-- <li>
+                <a href="javascript:void(0)"><i class="fa fa-twitter"></i></a>
+              </li>
+              <li>
+                <a href="javascript:void(0)"><i class="fa fa-linkedin"></i></a>
+              </li> -->
+              <li>
+                <a target="_blank" href="http://www.instagram.com/manihar_in"><i class="fab fa-instagram"></i></a>
+              </li>
+              <!-- <li>
+                <a href="javascript:void(0)"
+                  ><i class="fa fa-google-plus"></i
+                ></a>
+              </li> -->
+            </ul>
+          </div>
+        </div>
+        <div class="col-sm-3 widget">
+          <div class="row m0">
+            <h4>information</h4>
+            <ul class="nav" style="display: inline;">
+              <li><a [routerLink]="['/about']">About Us</a></li>
+              <li><a [routerLink]="['/contact-us']">Contact Us</a></li>
+              <li><a [routerLink]="['/terms-condition']">Terms & Conditions</a></li>
+              <li><a [routerLink]="['/privacy-policy']">Privacy Policy</a></li>
+              <li><a [routerLink]="['/refund-policy']">Refund Policy</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-sm-3 widget">
+          <div class="row m0">
+            <h4>Top brands</h4>
+            <ul class="nav" style="display: inline;">
+              <li *ngFor="let b of brands">
+                <a [routerLink]="['/products-listing']" [queryParams]="getFilter(b._id)">{{ b.brandName | titlecase }}</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-sm-3 widget">
+          <div class="row m0">
+            <h4>Subscribe to our latest news</h4>
+            <!-- <form action="" method="post" role="form"> -->
+              <div class="input-group">
+                <span class="input-group-addon"
+                  ><i class="fa fa-envelope"></i
+                ></span>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="subscribeEmail"
+                  name="subscribeEmail"
+                  placeholder="EMAIL ADDRESS"
+                />
+              </div>
+              <input
+                type="submit"
+                class="form-control"
+                value="Subscribe"
+                id="submit"
+                name="submit"
+              />
+            <!-- </form> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row m0 copyRight">
+    <div class="container">
+      <div class="row">
+        <div class="fleft">
+          ©2023 <a [routerLink]="['/']">Manihar</a> All Rights Reserved.
+        </div>
+        <ul class="nav nav-pills fright">
+          <li><a [routerLink]="['/']">Home</a></li>
+          <li><a [routerLink]="['/about']">About</a></li>
+          <li><a [routerLink]="['/contact-us']">Contact</a></li>
+          <li><a [routerLink]="['/terms-condition']">Terms & Conditions</a></li>
+          <li><a [routerLink]="['/privacy-policy']">Privacy Policy</a></li>
+          <li><a [routerLink]="['/refund-policy']">Refund Policy</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>

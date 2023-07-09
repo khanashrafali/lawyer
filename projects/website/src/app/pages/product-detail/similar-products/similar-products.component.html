@@ -1,0 +1,28 @@
+<section class="row contentRowPad greybg">
+  <div class="sectionTitle">
+    <h3>Similar <span>Products</span></h3>
+    <h5>know more about our latest collection</h5>
+  </div>
+
+  <!-- <div class="container" *ngFor="let cat of appHomeData.data"> -->
+  <!-- <div class="row"> -->
+  <!-- <ng-container *ngFor="let p of cat.products"> -->
+  <!-- </ng-container> -->
+  <!-- </div> -->
+  <!-- </div> -->
+  <div class="container">
+    <div class="row" *ngIf="(products | async)?.data?.docs; let prods">
+      <div *ngFor="let item of prods" class="col-sm-4 product2">
+        <app-product-item [p]="item"></app-product-item>
+      </div>
+    </div>
+  </div>
+  <br />
+
+  <div class="container text-center">
+    <a href="javascript:void(0)" (click)="showMore()" class="btn btn-primary"> <i class="fa fa-eye"></i> &nbsp; See More...</a>
+  </div>
+
+  <br />
+  <br />
+</section>

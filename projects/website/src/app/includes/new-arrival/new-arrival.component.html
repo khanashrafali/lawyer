@@ -1,0 +1,25 @@
+<section class="row contentRowPad greybg">
+  <div class="sectionTitle container">
+    <h3>Shop By Collection</h3>
+    <h5>We Develop Create Custom Jewels.</h5>
+    <div class="shape-section">
+      <figure>
+        <img src="assets/images/shape.svg" />
+      </figure>
+    </div>
+  </div>
+
+  <!-- <div class="container" *ngFor="let cat of appHomeData.data"> -->
+  <!-- <div class="row"> -->
+  <!-- <ng-container *ngFor="let p of cat.products"> -->
+  <!-- </ng-container> -->
+  <!-- </div> -->
+  <!-- </div> -->
+  <div class="container">
+    <div class="row">
+      <div *ngFor="let item of products" class="col-sm-3 product2">
+        <app-product-item [p]="item"></app-product-item>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,83 @@
+<!-- Main Wrapper -->
+<div class="main-wrapper login-body">
+  <div class="login-wrapper">
+    <div class="container">
+      <div class="loginbox">
+        <div class="login-left">
+          <!-- <img class="img-fluid" src="assets/logo.jpeg" alt="Logo" /> -->
+        </div>
+        <div class="login-right">
+          <div class="login-right-wrap" *ngIf="form">
+            <h1>Login</h1>
+            <p class="account-subtitle">Access to our dashboard</p>
+
+            <!-- Form -->
+            <form>
+              <div class="form-group">
+                <div class="input-group">
+                  <!-- [ngClass]="form.get('email')?.touched ? (form.get('email')?.errors ? 'is-invalid' : 'is-valid') : ''" -->
+                  <input
+                    formControlName="email"
+                    class="form-control"
+                    type="text"
+                    placeholder="Email *"
+                    required
+                  />
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                      <i class="fa fa-envelope"></i>
+                    </div>
+                  </div>
+                </div>
+                <!-- <app-input-error [control]="form.get('email')!" [fieldName]="'Email'"></app-input-error> -->
+              </div>
+
+              <div class="form-group">
+                <div class="input-group">
+                  <input
+                    formControlName="password"
+                    class="form-control"
+                    [type]="passIsHide ? 'password' : 'text'"
+                    placeholder="Password *"
+                    required
+                  />
+                  <div class="input-group-append">
+                    <div class="input-group-text cursor" (click)="passIsHide = !passIsHide">
+                      <i [ngClass]="passIsHide ? 'fa fa-eye-slash' : 'fa fa-eye'"></i>
+                    </div>
+                  </div>
+                </div>
+                <!-- <app-input-error [control]="form.get('password')!" [fieldName]="'Password'"></app-input-error> -->
+              </div>
+              <div class="form-group">
+                <button class="btn btn-primary btn-block" type="submit">
+                  <span *ngIf="isFormSubmit" class="spinner-border spinner-border-sm mr-2" role="status"></span>
+                  Login
+                </button>
+              </div>
+            </form>
+            <!-- /Form -->
+
+            <div class="text-center forgotpass" >
+              <a [routerLink]="['/forgot-password']" [queryParams]="{ view: 'SEND_OTP' }">Forgot Password?</a>
+            </div>
+            <div class="login-or" [hidden]="true">
+              <span class="or-line"></span>
+              <span class="span-or">or</span>
+            </div>
+
+            <!-- Social Login -->
+            <div class="social-login" [hidden]="true">
+              <span>Login with</span>
+              <a href="#" class="facebook"><i class="fa fa-facebook"></i></a><a href="#" class="google"><i class="fa fa-google"></i></a>
+            </div>
+            <!-- /Social Login -->
+
+            <div class="text-center dont-have" [hidden]="true">Don’t have an account? <a routerLink="/signup">Register</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Main Wrapper -->

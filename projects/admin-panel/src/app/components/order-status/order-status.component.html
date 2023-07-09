@@ -1,0 +1,6 @@
+<span class="badge badge-pill inv-badge bg-success" *ngIf="orderStatus.PLACED == status">{{ status }}</span>
+<span class="badge badge-pill inv-badge bg-danger" *ngIf="orderStatus.CANCELLED == status">{{ status }}</span>
+<span class="badge badge-pill inv-badge bg-info" *ngIf="orderStatus.DELIVERED == status">{{ status }}</span>
+<span class="badge badge-pill inv-badge bg-purple" *ngIf="orderStatus.PACKED == status">{{ status }}</span>
+<span class="badge badge-pill inv-badge bg-success" *ngIf="orderStatus.RETURNED == status">{{ status }}</span>
+<span class="badge badge-pill inv-badge bg-warning" *ngIf="orderStatus.SHIPPED == status">{{ status }}</span>

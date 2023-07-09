@@ -1,0 +1,16 @@
+<span
+  *ngIf="status == PaymentStatus.PENDING || status == ApprovalStatus.PENDING"
+  class="badge badge-pill bg-secondary inv-badge"
+  >{{ status }}</span
+>
+
+<span
+  *ngIf="status == PaymentStatus.CANCELLED || status == PaymentStatus.ERROR || status == ApprovalStatus.DISAPPROVED"
+  class="badge badge-pill bg-danger inv-badge"
+  >{{ status }}</span
+>
+<span
+  *ngIf="status == PaymentStatus.COMPLETED || status == ApprovalStatus.APPROVED"
+  class="badge badge-pill bg-success inv-badge"
+  >{{ status }}</span
+>

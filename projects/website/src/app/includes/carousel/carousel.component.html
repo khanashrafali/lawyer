@@ -1,0 +1,30 @@
+<section id="slider" class="row container-fluid">
+  <div class="row sliderCont flexslider m0">
+    <ul class="slides nav">
+      <li *ngFor="let slide of slider" class="">
+        <a [href]="slide.redirectUrl" target="_blank" style="padding: 0">
+          <!-- <picture>
+            <source
+              *ngFor="let f of getSrcSet(slide.image)"
+              [media]="{ minWidth: f.width }"
+              [srcset]="slide.image.sm"
+            /> -->
+
+          <!-- [srcset]="getSrcSet(p.images[0]) || 'assets/img/patients/patient.jpg'" -->
+          <img [src]="slide.image.lg" [alt]="slide.name" draggable="false" width="100%" />
+          <!-- </picture> -->
+        </a>
+
+        <!--Text Lines-->
+      </li>
+    </ul>
+    <!-- <ul class="custom-navigation">
+      <li class="flex-prev">
+        <a class="flex-prev" href="#"><i class="fa fa-arrow-left"></i></a>
+      </li>
+      <li class="flex-next">
+        <a class="flex-next" href="#"><i class="fa fa-arrow-right"></i></a>
+      </li>
+    </ul> -->
+  </div>
+</section>

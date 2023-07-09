@@ -1,0 +1,36 @@
+<div class="row m0 thumbnail">
+  <div class="row m0 imgHov">
+    <img [routerLink]="['/product', p.slug]" [src]="p.images[0]" [alt]="p.name" />
+    <div class="hovArea row m0">
+      <div class="row m0 getlike">
+        <a class="fleft" (click)="addProductToCart()">
+          <i class="fas fa-shopping-cart"></i> {{ cartService.isInCart(p._id, p.sizes[0]) ? "Go" : "Add" }} to cart
+        </a>
+        <a class="fright" (click)="addToWishList()">
+          <i class="fa fa-heart"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="row m0 productIntro">
+    <h5 class="heading">
+      <br />
+      <a [routerLink]="['/product', p.slug]">{{ p.name | slice : 0 : 20 }}</a>
+      <span>
+        <span class="gapSpan">
+          <i class="fa fa-inr"></i> {{ p.sellingPrice }} <del> <i class="fa fa-inr"></i>{{ p.mrp }}</del></span
+        >
+        <div class="row stars m0">
+          <ng-container *ngFor="let star of getStarsCount(p.rating)">
+            <!-- <img [src]="star ? 'assets/images/heartw' : 'assets/images/heartf'" alt=""> -->
+            <i class="fas fa-star" [ngClass]="star ? 'stared' : ''"></i>
+          </ng-container>
+          <!-- <span class="vote">(8)</span> -->
+        </div>
+      </span>
+      <div style="margin-top: 10px; color: green;">
+         <i class="fa fa-percent" style="font-size: 10px; margin-right: 5px;"></i>{{ sum(p.sellingPrice,p.mrp) }} off
+      </div>
+    </h5>
+  </div>
+</div>

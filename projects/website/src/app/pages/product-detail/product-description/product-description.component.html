@@ -1,0 +1,102 @@
+<div class="row m0 tabRow">
+  <ul class="nav nav-tabs" role="tablist" id="shortcodeTab">
+    <li role="presentation" class="active">
+      <a href="#description" aria-controls="description" role="tab" data-toggle="tab"> <i class="fa fa-align-left"></i> description </a>
+    </li>
+    <!-- <li role="presentation">
+      <a href="#review" aria-controls="review" role="tab" data-toggle="tab">
+        <i class="fa fa-thumbs-up"></i> review ({{
+          product.reviewsCount | number
+        }})
+      </a>
+    </li> -->
+    <!-- <li role="presentation">
+      <a
+        href="#additionInfo"
+        aria-controls="additionInfo"
+        role="tab"
+        data-toggle="tab"
+      >
+        <i class="fa fa-file-text"></i> Additional Information
+      </a>
+    </li> -->
+  </ul>
+  <div class="tab-content shortcodeTabContent">
+    <div role="tabpanel" class="tab-pane row m0 active" id="description">
+      <!-- <div class="fleft img">
+        <img class="img-responsive" [src]="product.images[0]" alt="" />
+      </div> -->
+      <div class="fleft desc">
+        <h5 class="heading">Product Details</h5>
+        <div [innerHtml]="product.fullDesc"></div>
+      </div>
+    </div>
+    <!-- <div role="tabpanel" class="tab-pane row m0" id="review">
+      <div class="row m0 reviewCount">
+        {{ product.reviewsCount | number }} review for this product
+      </div>
+      <div class="row m0 reviewBody" *ngFor="let rw of product.reviews">
+        <span class="bold">rw.rating</span> out of 5 <br />
+        <span class="bold">{{ rw.user.name }}</span> -
+        {{ rw.createdAt | date: "medium" }}
+        <p class="m0">{{ rw.message }}</p>
+      </div>
+      <!-- <div class="row m0 reviewAdd">
+          <h4 class="heading">Add a review</h4>
+          <form
+            action="#"
+            role="form"
+            method="post"
+            class="row m0 reviewForm"
+          >
+            <div class="row">
+              <div class="col-sm-6">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Your Name *"
+                  required=""
+                />
+              </div>
+              <div class="col-sm-6">
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Your Email *"
+                  required=""
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <input
+                  type="url"
+                  class="form-control"
+                  placeholder="Your Website"
+                />
+              </div>
+              <div class="col-sm-6 ratingStars">
+                Your Rating
+                <input type="hidden" class="rating" data-fractions="2" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <h4 class="heading">Your Review</h4>
+                <textarea
+                  name="reviewText"
+                  id="reviewText"
+                  class="form-control reviewText"
+                ></textarea>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-12">
+                <input type="submit" class="btn btn-primary filled" />
+              </div>
+            </div>
+          </form>
+        </div>
+    </div> -->
+  </div>
+</div>

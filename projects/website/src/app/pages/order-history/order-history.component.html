@@ -1,0 +1,111 @@
+<section id="breadcrumbRow" class="row">
+  <div class="row pageTitle m0">
+    <div class="container">
+      <ul class="breadcrumb fright">
+        <li><a [routerLink]="['/']">home</a></li>
+        <li class="active">My Orders</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<div id="wrapper" class="container home_1">
+  <div class="row">
+    <div id="content-wrapper" class="col-lg-3 col-md-3 col-sm-3 col-12">
+      <section id="main">
+        <div class="profile-linking">
+          <ul>
+            <li class="profile-active">
+              <a routerLink="/edit-profile">Edit Profile</a>
+            </li>
+            <li class="profile-active">
+              <a [routerLink]="['/order-history']">My Order</a>
+            </li>
+            <!-- <li><a href="change-password.html">Change Password</a></li> -->
+            <li class="profile-active">
+              <a href="javascript:void(0)" (click)="logout()">Logout </a>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </div>
+
+    <div id="content-wrapper" class="col-lg-9 col-md-9 col-sm-9 col-12">
+      <section id="main">
+        <section class="page-content prc">
+          <div class="authfy-login">
+            <!-- panel-login start -->
+            <div class="authfy-panel panel-login text-center active">
+              <div class="authfy-heading">
+                <div class="compl-ord">
+                  <h3 class="auth-title">My Orders</h3>
+
+                  <select (change)="changeOrderStatus($event)">
+                    <option value="ALL">All</option>
+                    <option value="DELIVERED">Delivered Order</option>
+                    <option value="CANCELLED">Cancelled Order</option>
+                    <!-- <option>Returned Order</option> -->
+                  </select>
+                </div>
+                <p>Here are the orders you've placed since your account was created.</p>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                  <table class="table table-bordered table-labeled hidden-sm-down">
+                    <thead class="thead-default">
+                      <tr class="bg-danger">
+                        <th>Order reference</th>
+                        <th class="text-center">Date</th>
+                        <th class="text-center">Total price</th>
+                        <th class="hidden-md-down text-center">Payment</th>
+                        <th class="hidden-md-down text-center">Status</th>
+                        <th class="hidden-md-down text-center">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngIf="!pageData">
+                        Loading...
+                      </tr>
+                      <ng-container *ngIf="pageData">
+                        <tr *ngIf="!pageData.docs.length">
+                          <td colspan="6">No Order Available.</td>
+                        </tr>
+                        <tr *ngFor="let order of pageData.docs">
+                          <th [routerLink]="['/order-details', order.id]" style="cursor: pointer" scope="row">#{{ order.id }}</th>
+                          <td>{{ order.created_at | date : "medium" }}</td>
+                          <td class="text-xs-right"><i class="fa fa-inr"></i> {{ order.total }}</td>
+                          <td class="hidden-md-down">
+                            {{ order.payment_method | uppercase }}
+                          </td>
+                          <td class="text-center">
+                            <span class="bright">
+                              {{ order.status | uppercase }}
+                            </span>
+                          </td>
+                          <td>
+                            <button (click)="cancelOrder(order.id)" class="btn btn-primary">Cancel</button>
+                          </td>
+                        </tr>
+                      </ng-container>
+                      <tr *ngIf="pageData">
+                        <td colspan="6">
+                          <app-pagination
+                            [currentPage]="page"
+                            [pageSize]="pageSize"
+                            [pageData]="pageData"
+                            [route]="'/order-history'"
+                          ></app-pagination>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <!-- ./panel-login -->
+          </div>
+        </section>
+      </section>
+    </div>
+  </div>
+</div>

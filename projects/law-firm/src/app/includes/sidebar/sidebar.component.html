@@ -1,0 +1,154 @@
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-inner slimscroll">
+    <div id="sidebar-menu" class="sidebar-menu">
+      <ul class="text-white">
+        <li class="menu-title">
+          <span>Main</span>
+        </li>
+        <!-- <ng-container>
+          <li [routerLink]="['']" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            <a [routerLink]="['']"> <i class="fe fe-home"></i> <span>Dashboard</span></a>
+          </li>
+        </ng-container> -->
+
+        <!-- <ng-container>
+          <li [routerLink]="['/categories']" [queryParams]="queryParams()" routerLinkActive="active">
+            <a [routerLink]="['/categories']" [queryParams]="queryParams()"><i class="fe fe-feather"></i> <span>Categories</span></a>
+          </li>
+        </ng-container> -->
+        <!-- <ng-container *ngIf="haveAccess(adminModules.PRODUCT, authData)">
+          <li [routerLink]="['/category-heading']" [queryParams]="queryParams()" routerLinkActive="active">
+            <a [routerLink]="['/category-heading']" [queryParams]="queryParams()"
+              ><i class="fe fe-wine-glass"></i> <span>Category Heading</span></a
+            >
+          </li>
+        </ng-container> -->
+        <!-- <ng-container>
+          <li [routerLink]="['/brands']" [queryParams]="queryParams()" routerLinkActive="active">
+            <a [routerLink]="['/brands']" [queryParams]="queryParams()"><i class="fe fe-money"></i> <span>Brands</span></a>
+          </li>
+        </ng-container> -->
+
+        <ng-container>
+          <li [routerLink]="['/law-firm']" [queryParams]="queryParams()" routerLinkActive="active">
+            <a [routerLink]="['/law-firm']" [queryParams]="queryParams()"><i class="fe fe-list-order"></i> <span>Law Firm Management</span></a>
+          </li>
+        </ng-container>
+
+        <ng-container>
+          <li [routerLink]="['/role-access']" [queryParams]="queryParams()" routerLinkActive="active">
+            <a [routerLink]="['/role-access']" [queryParams]="queryParams()"><i class="fe fe-users"></i> <span>Role Management</span></a>
+          </li>
+        </ng-container>
+
+        <!-- <ng-container *ngIf="haveAccess(adminModules.PRODUCT, authData)">
+          <li [routerLink]="['/ads']" [queryParams]="queryParams()" routerLinkActive="active">
+            <a [routerLink]="['/ads']" [queryParams]="queryParams()"><i class="fe fe-wallet"></i> <span>Advertise</span></a>
+          </li>
+        </ng-container> -->
+
+        <!-- <ng-container *ngIf="haveAccess(adminModules.PRODUCT, authData)">
+          <li [routerLink]="['/products']" [queryParams]="queryParams()" routerLinkActive="active">
+            <a [routerLink]="['/products']" [queryParams]="queryParams()"><i class="fe fe-credit-card"></i> <span>Products</span></a>
+          </li>
+        </ng-container> -->
+
+        <!-- <ng-container>
+          <li [routerLink]="['/uploadProducts']" [queryParams]="queryParams()" routerLinkActive="active">
+            <a href="javascript:void(0)"><i class="fe fe-credit-card"></i> <span>Upload Products</span></a>
+          </li>
+        </ng-container> -->
+
+        <!-- <ng-container>
+          <li [routerLink]="['/users']" [queryParams]="queryParams()" routerLinkActive="active">
+            <a [routerLink]="['/users']" [queryParams]="queryParams()"><i class="fe fe-users"></i> <span>Users</span></a>
+          </li>
+        </ng-container> -->
+
+        <!-- <ng-container *ngIf="haveAccess(adminModules.ORDER, authData)">
+          <li class="submenu">
+            <a [routerLink]="['/orders']" [queryParams]="queryParamsOrder(orderStatus.PLACED)" href="javascript:void()"> -->
+              <!-- (click)="isOpen = !isOpen" [ngClass]="isOpen ? 'subdrop' : ''" -->
+              <!-- <i class="fe fe-shopping-bag"></i>
+              <span>Orders</span> -->
+              <!-- <span class="menu-arrow"></span> -->
+            <!-- </a> -->
+
+            <!-- <ul [ngStyle]="{ display: isOpen ? 'block' : 'none' }">
+              <li outerLinkActive="active">
+                <a [routerLink]="['/orders']" [queryParams]="queryParamsOrder(orderStatus.PLACED)">
+                  <i class="fe fe-list-order"></i> &nbsp; <span>PLACED</span></a
+                >
+              </li>
+
+              <li outerLinkActive="active">
+                <a [routerLink]="['/orders']" [queryParams]="queryParamsOrder(orderStatus.CANCELLED)">
+                  <i class="fe fe-list-order"></i> &nbsp; <span>CANCELLED</span></a
+                >
+              </li>
+            </ul> -->
+          <!-- </li>
+        </ng-container> -->
+
+        <!-- <ng-container *ngIf="haveAccess(adminModules.CONTENT, authData)">
+          <li [routerLink]="['/content']" [queryParams]="queryParams()" routerLinkActive="active">
+            <a [routerLink]="['/content']" [queryParams]="queryParams()"
+              ><i class="fa fa-question-circle"></i> <span>Content</span></a
+            >
+          </li>
+        </ng-container> -->
+
+        <!-- <ng-container *ngIf="haveAccess(adminModules.SLIDER, authData)">
+          <li [routerLink]="['/slider']" routerLinkActive="active">
+            <a [routerLink]="['/slider']"><i class="fe fe-columns"></i> <span>Manage Slider</span></a>
+          </li>
+        </ng-container> -->
+
+        <!-- <ng-container *ngIf="haveAccess(adminModules.SLIDER, authData)">
+          <li [routerLink]="['/coupon-code']" routerLinkActive="active">
+            <a [routerLink]="['/coupon-code']"><i class="fe fe-map"></i> <span>Coupon Code</span></a>
+          </li>
+        </ng-container> -->
+        <!-- <ng-container *ngIf="haveAccess(adminModules.SLIDER, authData)">
+          <li [routerLink]="['/service-charge']" routerLinkActive="active">
+            <a [routerLink]="['/service-charge']"><i class="fe fe-map"></i> <span>Service Charge</span></a>
+          </li>
+        </ng-container> -->
+        <!--
+        <ng-container *ngIf="authData && authData.role == 'SUPER_ADMIN'">
+          <li
+            [routerLink]="['/user-feedbacks']"
+            [queryParams]="queryParams()"
+            routerLinkActive="active"
+          >
+            <a [routerLink]="['/user-feedbacks']" [queryParams]="queryParams()"
+              ><i class="fe fe-wine-glass"></i> <span>Users Feedback</span></a
+            >
+          </li>
+        </ng-container> -->
+
+        <!-- <li class="submenu">
+          <a href="#"
+            ><i class="fe fe-users"></i> <span>Orders</span>
+            <span class="menu-arrow"></span>
+          </a>
+
+          <ul style="display: none">
+            <li routerLinkActive="active">
+              <a routerLink="/dashboard/doctors/list">
+                <i class="fe fe-list-task"></i> &nbsp;
+                <span>View List </span>
+              </a>
+            </li>
+            <li routerLinkActive="active">
+              <a routerLink="/dashboard/doctors/add">
+                <i class="fe fe-plus"></i> &nbsp;
+                <span>Add New</span>
+              </a>
+            </li>
+          </ul>
+        </li> -->
+      </ul>
+    </div>
+  </div>
+</div>

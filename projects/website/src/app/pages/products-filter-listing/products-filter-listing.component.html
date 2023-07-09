@@ -1,0 +1,171 @@
+<section id="breadcrumbRow" class="row">
+  <div class="row pageTitle m0">
+    <div class="container-fluid custome-inside-container">
+      <h4 class="fleft">All Products</h4>
+      <ul class="breadcrumb">
+        <li><a routerLink="/">home</a></li>
+        <li class="active">All Products</li>
+      </ul>
+      <h5 class="cate-total-item"><span>Search Result</span> - {{ pageData?.count || 0 }} items</h5>
+    </div>
+  </div>
+</section>
+<section class="left custome-inside-container">
+  <section class="contentRowPad">
+    <!--Tabs Row-->
+    <div class="cate-grid">
+      <div class="cate-left cusshs">
+        <ng-container *ngIf="filterForm">
+          <form [formGroup]="filterForm!" (ngSubmit)="submitFilter(filterForm.value)">
+            <aside class="sidebar_widget">
+              <div class="filclear">
+                <h6>Filter <a href="javascript:void(0)" (click)="clearFilter()">Clear</a></h6>
+              </div>
+              <div class="widget_inner">
+                <div class="widget_list widget_categories">
+                  <h2 class="innerWidget-heading" *ngIf="pv">
+                    Filter by Price <span>{{ pv.value }} <b>10000</b></span>
+                  </h2>
+                  <input
+                    formControlName="sliderPrice"
+                    id="multi3"
+                    class="multi-range"
+                    type="range"
+                    [min]="1"
+                    [max]="10000"
+                    (change)="btn.click()"
+                    [step]="100"
+                    #pv
+                  />
+                </div>
+                <ng-container *ngIf="brands?.length">
+                  <div class="cate-widget-sepertate">
+                    <h2 class="innerWidget-heading"><mat-panel-title> BRAND</mat-panel-title></h2>
+                    <!-- <mat-panel-description>
+                            Click here to expand the panel
+                          </mat-panel-description> -->
+
+                    <div class="custome-checkbox newLabel_cate" formArrayName="brands">
+                      <ng-container *ngFor="let b of brands; let bi = index" [formGroupName]="bi" (click)="btn.click()">
+                        <div>
+                          <input
+                            (click)="onChangeFilter('brands', bi, b.brandName)"
+                            formControlName="selected"
+                            class="form-check-input"
+                            type="checkbox"
+                            [id]="'exampleCheckbox1brand' + bi"
+                          />
+                          <label class="form-check-label" [for]="'exampleCheckbox1brand' + bi">
+                            <span>{{ b.brandName | titlecase }}</span></label
+                          >
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div>
+                </ng-container>
+
+                <ng-container *ngIf="categories?.length">
+                  <div class="cate-widget-sepertate">
+                    <h2 class="innerWidget-heading"><mat-panel-title> CATEGORY </mat-panel-title></h2>
+                    <!-- <mat-panel-description>
+                            Click here to expand the panel
+                          </mat-panel-description> -->
+
+                    <div class="custome-checkbox newLabel_cate" formArrayName="categories">
+                      <ng-container *ngFor="let b of categories; let bi = index" [formGroupName]="bi" (click)="btn.click()">
+                        <div>
+                          <input
+                            (click)="onChangeFilter('categories', bi, b.name)"
+                            formControlName="selected"
+                            class="form-check-input"
+                            type="checkbox"
+                            [id]="'exampleCheckbox1brand' + bi"
+                          />
+                          <label class="form-check-label" [for]="'exampleCheckbox1brand' + bi">
+                            <span>{{ b.name | titlecase }}</span></label
+                          >
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div>
+                </ng-container>
+
+                <div class="cate-widget-sepertate">
+                  <h2 class="innerWidget-heading"><mat-panel-title> RATING </mat-panel-title></h2>
+                  <!-- <mat-panel-description>
+                          Click here to expand the panel
+                        </mat-panel-description> -->
+
+                  <div class="custome-checkbox newLabel_cate" formArrayName="rating">
+                    <ng-container *ngFor="let c of getFormArr('rating').controls; let ri = index">
+                      <ng-container [formGroupName]="ri" (click)="btn.click()">
+                        <div>
+                          <input
+                            (click)="onChangeFilter('rating', ri, 4 - ri)"
+                            formControlName="selected"
+                            class="form-check-input"
+                            type="checkbox"
+                            [id]="'exampleCheckbox1rating' + ri"
+                          />
+                          <label class="form-check-label" [for]="'exampleCheckbox1rating' + ri">
+                            <span>{{ 4 - ri }}★ &amp; above</span></label
+                          >
+                        </div>
+                      </ng-container>
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="shop_sidebar_banner"> -->
+              <!-- <a href="#"><img src="assets/img/bg/banner9.jpg" alt="" /></a> -->
+              <!-- </div> -->
+            </aside>
+            <button [hidden]="true" type="submit" #btn></button>
+          </form>
+        </ng-container>
+      </div>
+      <div class="cusshs cate-right">
+        <div class="itemFound">
+          <h5>Filter Searches</h5>
+          <!-- <ul>
+            <li *ngFor="let item of labels">
+              <a href="javascript:void(0)">{{ item }} <i class="fas fa-times"></i></a>
+            </li>
+          </ul> -->
+        </div>
+        <ng-container *ngIf="!pageData"> Loading... </ng-container>
+        <div class="category-right-product">
+          <ng-container *ngIf="pageData">
+            <ng-container *ngIf="pageData.docs.length < 1"> No Items Found. </ng-container>
+            <ng-container *ngIf="pageData.docs.length">
+              <!-- <ng-container *ngFor="let p of pageData.docs">
+                <app-product-item [p]="p"></app-product-item>
+              </ng-container> -->
+
+              <div class="row">
+                <div *ngFor="let item of pageData.docs" class="col-sm-4 product2">
+                  <app-product-item [p]="item"></app-product-item>
+                </div>
+              </div>
+            </ng-container>
+
+            <div class="text-center">
+              <app-pagination
+                *ngIf="pageData.docs.length"
+                [currentPage]="page"
+                [pageSize]="pageSize"
+                [pageData]="pageData"
+                [route]="'/products-listing'"
+              ></app-pagination>
+            </div>
+          </ng-container>
+        </div>
+
+        <!-- <div class="noData" *ngIf="!pageData.docs.length">
+                      No Item Found
+                    </div> -->
+      </div>
+    </div>
+    <br /><br />
+  </section>
+</section>

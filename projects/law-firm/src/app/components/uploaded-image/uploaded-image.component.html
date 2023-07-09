@@ -1,0 +1,17 @@
+<div class="d-flex align-content-end" *ngIf="imageUrls.length && !disableLink">
+  <small class="text-success" *ngFor="let item of imageUrls">
+    &nbsp;
+    <a [href]="item" target="blank">
+      <img [src]="item" height="20" width="20" style="border-radius: 50%" />
+    </a>
+  </small>
+</div>
+<!-- <small class="text-success" *ngIf="imageUrls[0] && !disableLink">
+  &nbsp;<a target="_blank" href="{{ imageUrls[0] }}">
+    {{ label }}:{{ imageUrls[0] | slice: 0:30 }}...
+  </a></small
+>
+
+<small class="text-success" *ngIf="imageUrls[0] && disableLink">
+  &nbsp;{{ label }}:{{ imageUrls[0] | slice: 0:30 }}...
+</small> -->

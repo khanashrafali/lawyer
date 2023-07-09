@@ -1,0 +1,26 @@
+.home_2 {
+  min-height: 100%;
+}
+
+.contentRowPad {
+  padding: 0px 0 35px;
+  background-color: #f7f7f7;
+  overflow: hidden;
+}
+
+.widget_inner {
+  background: unset;
+  border: unset;
+  padding: 20px;
+  margin-bottom: 50px;
+}
+
+.cate-left {
+  padding: 10px;
+  background-color: #fff;
+}
+
+.cate-grid .row {
+  padding: 20px 15px 20px 0;
+  background-color: #fff;
+}

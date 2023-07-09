@@ -1,0 +1,258 @@
+<div class="page-wrapper">
+  <div class="content container-fluid">
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="row">
+        <div class="col-sm-7 col-auto">
+          <h3 class="page-title">Users</h3>
+        </div>
+        <div class="col-sm-5 col">
+          <!-- <button
+            [routerLink]="['add']"
+            class="btn btn-primary float-right mt-2"
+          >
+            Add
+          </button> -->
+        </div>
+      </div>
+    </div>
+    <!-- /Page Header -->
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="card">
+          <!-- filter section -->
+          <!-- <form [formGroup]="filterForm" (ngSubmit)="applyFilter(filterForm.value)">
+            <div class="card-header">
+              <div class="row">
+                <div class="col-sm-7 col-auto">
+                  <h4 class="page-title">Filter</h4>
+                </div>
+                <div class="col-sm-5 col">
+                  <div class="float-right mt-2">
+                    <button type="submit" class="btn btn-sm btn-primary mr-2" *ngIf="showFilter">Apply</button>
+                    <button
+                      (click)="clearFilter()"
+                      type="button"
+                      class="btn btn-sm btn-info mr-2"
+                      *ngIf="isFilterApplied"
+                    >
+                      Clear
+                    </button>
+                    <button type="button" (click)="showFilter = !showFilter" class="btn btn-primary btn-sm">
+                      <i class="fa" [ngClass]="showFilter ? 'fa-eye-slash' : 'fa-eye'"></i>
+                      {{ showFilter ? "Hide" : "Show" }}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <ng-container *ngIf="showFilter">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-12 col-md-3">
+                    <div class="form-group">
+                      <label for=""><b>Created At</b></label>
+                      <mat-form-field class="datepicker w-100" appearance="outline">
+                        <input
+                          placeholder="Date"
+                          formControlName="createdAt"
+                          matInput
+                          [matDatepicker]="picker"
+                          class="p-0 w-100"
+                          readonly
+                        />
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                      </mat-form-field>
+                    </div>
+                    <app-input-error
+                    [control]="form.get('startDate')!"
+                    [fieldName]="'Start Date'"
+                  >
+                  </app-input-error>
+                  </div>
+                </div>
+              </div>
+
+              <hr class="m-0 p-0" />
+            </ng-container>
+          </form> -->
+          <!-- filter section -->
+          <div class="card-body">
+            <div
+              id="DataTables_Table_0_wrapper"
+              class="dataTables_wrapper dt-bootstrap4 no-footer"
+            >
+              <div class="row w-100">
+                <div
+                  class="app-pagesize-dropdown col"
+                  (selectedPageSize)="onChangePageSize($event)"
+                  [pageSize]="pageSize"
+                ></div>
+                <div class="col">
+                  <div class="d-flex align-content-center float-right">
+                    <app-search-input
+                      (inputText)="onSearch($event)"
+                      class="float-lg-right"
+                      [placeholder]="'Search Name,Mobile Number,Email'"
+                    ></app-search-input>
+                    <!-- <div>
+                            &nbsp;&nbsp;
+                            <button
+                            mat-icon-button
+                            class="alternate-theme primary"
+                            aria-label="Example icon button with a heart icon"
+                            >
+                            <mat-icon (click)="onFilter()">filter_list</mat-icon>
+                          </button>
+                        </div> -->
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="text-center text-danger"
+                *ngIf="!haveAccess('read', this.authData)"
+              >
+                <b>Unauthorize Access.</b>
+              </div>
+
+              <div
+                class="row"
+                *ngIf="dataIsLoaded && haveAccess('read', this.authData)"
+              >
+                <div class="col-sm-12">
+                  <div class="table-responsive">
+                    <table
+                      class="datatable table table-hover table-center mb-0 dataTable no-footer"
+                      id="DataTables_Table_0"
+                      role="grid"
+                      aria-describedby="DataTables_Table_0_info"
+                    >
+                      <thead>
+                        <tr role="row">
+                          <th class="sorting_1">Name</th>
+                          <th class="sorting_1 text-center">Order Count</th>
+                          <th class="sorting_1 text-center">Status</th>
+                          <th class="sorting_1" class="text-center">
+                            Mobile Number
+                          </th>
+                          <th class="sorting_1" class="text-center">Email</th>
+                          <!-- <th class="sorting_1 text-center">DOB</th> -->
+                          <!-- <th>Email</th> -->
+                          <th class="sorting_1" class="text-center">
+                            Created At
+                          </th>
+                          <!-- <th class="text-right">Actions &nbsp;</th> -->
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr
+                          *ngFor="let item of pageData.docs; let i = index"
+                          role="row"
+                          [ngClass]="i % 2 == 0 ? 'even' : 'odd'"
+                        >
+                          <td class="sorting_1">
+                            <h2 class="table-avatar">
+                              <a class="avatar avatar-sm mr-2"
+                                ><img
+                                  class="avatar-img rounded-circle"
+                                  [src]="
+                                    item?.avatar?.length
+                                      ? item?.avatar
+                                      : 'assets/img/patients/patient.jpg'
+                                  "
+                                  [alt]="item.name"
+                              /></a>
+                              <a>{{ item.name || "N/A" }} </a>
+                            </h2>
+                          </td>
+
+                          <td class="text-center">
+                            <span class="badge badge-primary badge-pill p-2"
+                              ><b>{{ item.orderCount | number }}</b></span
+                            >
+                          </td>
+
+                          <!-- featured column -->
+                          <td class="sorting_1 text-center">
+                            <div class="btn-group">
+                              <button
+                                type="button"
+                                class="btn btn-info dropdown-toggle btn-sm"
+                                data-toggle="dropdown"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                              >
+                                {{ item.isActive ? "Active" : "Unactive" }}
+                              </button>
+                              <div class="dropdown-menu">
+                                <ng-container *ngIf="item.isActive">
+                                  <a
+                                    (click)="updateUserStatus(item._id, false)"
+                                    class="dropdown-item cursor"
+                                    >UNACTIVE</a
+                                  >
+                                </ng-container>
+                                <ng-container *ngIf="!item.isActive">
+                                  <a
+                                    (click)="updateUserStatus(item._id, true)"
+                                    class="dropdown-item cursor"
+                                    >ACTIVE</a
+                                  >
+                                </ng-container>
+                              </div>
+                            </div>
+                          </td>
+                          <!-- featured column -->
+
+                          <td class="sorting_1 text-center">
+                            <h2 class="table-avatar">
+                              {{ item.mobileNumber || "N/A" }}
+                            </h2>
+                          </td>
+
+                          <td class="sorting_1 text-center">
+                            <h2 class="table-avatar">
+                              {{ item.email || "N/A" }}
+                            </h2>
+                          </td>
+
+                          <!-- <td class="sorting_1 text-center">
+                            <h2 class="table-avatar">
+                              {{ (item.dob | date: "d MMM, y") || "N/A" }}
+                            </h2>
+                          </td> -->
+
+                          <td class="text-center">
+                            {{ item.date | date: "d MMM, y" }}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <mat-progress-bar
+                *ngIf="!dataIsLoaded && haveAccess('read', this.authData)"
+                mode="indeterminate"
+              ></mat-progress-bar>
+            </div>
+            <ng-container *ngIf="dataIsLoaded">
+              <app-pagination
+                class="row p-2"
+                [route]="'/users'"
+                [pageData]="pageData"
+                [pageSize]="pageSize"
+                [currentPage]="page"
+              ></app-pagination>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-delete-modal></app-delete-modal>

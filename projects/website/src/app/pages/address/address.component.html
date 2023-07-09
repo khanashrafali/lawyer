@@ -1,0 +1,449 @@
+<div class="mainButton"  >
+  <!-- <div class="col-lg-6 col-md-6 col-sm-6"> -->
+    <div class="btnAdd">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal7">Add Shipping Address</button>
+    </div>
+  <!-- </div> -->
+  <!-- <div class="col-lg-6 col-md-6 col-sm-6"> -->
+    <!-- <div class="btnAdd">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal8">Add Customisation Option</button>
+    </div> -->
+  </div>
+<!-- </div> -->
+
+<div class="container home_1">
+  <div class="customCartPageSection">
+    <div class="customCartMiddle">
+      <div class="mainCartBx">
+        <div class="cartBorderBox">
+          <div class="chkbxCont" *ngFor="let address of getAddData">
+            <input name="" type="radio" (click)="changeSelectedAddress(address?._id)" [checked]="address?._id == selectedAddress" />
+            <div class="contentManage">
+              <p>
+                Name: <Span> {{ address?.name }}</Span>
+              </p>
+              <p>
+                Address: {{ address?.address }}<Span> {{ address.city }}</Span> <Span> {{ address.pin_code }}</Span
+                ><Span> {{ address.state }}</Span>
+              </p>
+              <p>Mobile: {{ address.phone }}</p>
+            </div>
+            <div class="editZIcon">
+              <a data-toggle="modal" (click)="editAddress(address)" data-target="#updateAddress"><i class="fa	fas fa-edit" style="font-size:14px;color:#f10085"></i></a>
+              <a (click)="deleteAddress(address?._id)"><i class="fa fas fa-trash" style="font-size:14px;color:#f10085 ;padding-left: 5px;"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="cartBorderBox" *ngIf="customization">
+          <div class="chkbxCont" >
+            <div class="contentManage">
+              <p style="text-align: center;margin-top: -15px;color: black;">Customization Description</p>
+              <p class="hideScroll">
+                {{ customization }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="rightSideDiv" *ngIf="cartValue;">
+      <div class="border p-md-4 cart-totals ml-30 rightSideData">
+        <div class="table-responsive">
+          <div class="customYourOrder" style="color: #d9098c;">YOUR ORDER</div>
+          <div class="customProduct" style="color: #d9098c;">Product</div>
+          <table class="table no-border tableSummary">
+            <tbody>
+              <tr class="bb-no" *ngFor="let cartItem of cartValue?.items">
+                <td class="product-name">
+                  <b> {{ cartItem?.product?.name }} </b><i class="fi-rs-cross mr-10"></i
+                  ><b
+                    ><span class="product-quantity"> x{{ cartItem.qty }}</span></b
+                  >
+                </td>
+                <td class="product-total">
+                  <b> Rs.{{ cartItem.product.sellingPrice }} </b>
+                </td>
+              </tr>
+              <tr class="cart-subtotal bb-no">
+                <td class="product-name"><b> Sub Total Amount </b><i class="fi-rs-cross mr-10"></i></td>
+                <td class="product-total">
+                  <b> Rs.{{cartValue?.total }}</b>
+                </td>
+              </tr>
+              <tr class="cart-subtotal bb-no" *ngIf="discPrice">
+                <td class="product-name"><b> Coupon Discount </b><i class="fi-rs-cross mr-10"></i></td>
+                <td class="product-total">
+                  <b> Rs.{{ discPrice }}</b>
+                </td>
+              </tr>
+              <tr class="cart-subtotal bb-no" *ngIf="cartValue?.total < chargeData.cartValue ">
+                <td class="product-name"><b> Shipping Charge </b><i class="fi-rs-cross mr-10"></i></td>
+                <td class="product-total">
+                  <b> Rs.{{ chargeData.shipCharge }}</b>
+                </td>
+              </tr>
+              <tr class="cart-subtotal bb-no">
+                <td class="product-name"><b> Total Amount </b><i class="fi-rs-cross mr-10"></i></td>
+                <td class="product-total">
+                  <b> Rs.{{ cartValue?.total < chargeData.cartValue ? (discPrice ? cartValue?.total - discPrice : cartValue?.total) + chargeData.shipCharge : discPrice ? cartValue?.total - discPrice : cartValue?.total }}</b>
+                </td>
+              </tr>
+
+              <tr class="cart-subtotal bb-no">
+                <td colspan="2">
+                  <div class="d-flex align-content-around justify-content-between">
+                    <div><b> Payment Mode </b></div>
+                    <div class="float-end">
+                      <label for="online"
+                        ><input
+                          type="radio"
+                          name="paymentMethod"
+                          id="online"
+                          value="Prepaid"
+                          checked
+                          (click)="paymentMethodType('Prepaid')"
+                          class="form-check-input"
+                        />
+                        &nbsp; <b class="dark">Online</b></label
+                      >
+                      &nbsp; &nbsp;
+                      <label for="cod"
+                        ><input
+                          type="radio"
+                          name="paymentMethod"
+                          id="cod"
+                          value="COD"
+                          (click)="paymentMethodType('COD')"
+                          class="form-check-input"
+                        />
+                        &nbsp; <b class="dark">COD</b></label
+                      >
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="couponcode">
+            <div><h4 style="color: #d9098c;">Check Availability</h4></div>
+            <div class="coupnDiv">
+                <input type="text" class="form-control" [maxlength]="6" [(ngModel)]="getZipCode">
+                <button class="btnNew " type="submit" (click)="checkAvail()" [disabled]="isLoadingCheck">{{ isLoadingCheck ? "Wait" : "Apply" }}</button>
+              </div>
+              <h6 style="color:red" *ngIf="expectedDeliveryDate">Expected Delivery {{expectedDeliveryDate}}</h6>
+              <h6 style="color:red" *ngIf="InvalidPinCode">{{InvalidPinCode}}</h6>
+        </div>
+        <div class="couponcode">
+            <div><h4 style="color: #d9098c;">Coupon Code</h4></div>
+            <div >
+              <form class="coupnDiv" [formGroup]="couponForm" (ngSubmit)="onCouponSubmit()">
+                <input type="text" class="form-control" formControlName="couponCode">
+                <!-- <h6 *ngIf="couponStatus">{{couponError}}</h6> -->
+                <button class="btnNew" type="submit" [disabled]="isLoadingCoupon">{{ isLoadingCoupon ? "Wait" : "Apply" }}</button>
+
+              </form>
+
+            </div>
+            <app-input-error [control]="couponForm.get('couponCode')!" [fieldName]="'Coupon Code'" ></app-input-error>
+        </div>
+        <!---->
+        <!---->
+        <button [disabled]="!cartValue?.items?.length || isLoading" type="button" class="btn mb-20 w-100" (click)="placeOrder()">
+          {{ isLoading ? "..." : "Continue" }}
+          <i class="fi-rs-sign-out ml-15"></i>
+        </button>
+        <!---->
+        <!---->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal7" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  ">
+        <h5 class="modal-title" id="exampleModalLabe3">Add Shipping Address</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body p-3">
+        <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+          <div class="row">
+            <!-- name -->
+            <div class="col-lg-6 col-md-12 col-sm-12">
+              <div class="form-group">
+                <label>First Name</label>
+                <input type="text" class="form-control" formControlName="name" />
+                <app-input-error [control]="addForm.get('name')!" [fieldName]="'Name'" ></app-input-error>
+              </div>
+            </div>
+            <!-- name -->
+
+            <!-- email -->
+            <div class="col-lg-6 col-md-12 col-sm-12">
+              <div class="form-group">
+                <label>Email</label>
+                <input type="text" class="form-control" formControlName="email" />
+                <app-input-error [control]="addForm.get('email')!" [fieldName]="'Email'" ></app-input-error>
+              </div>
+            </div>
+            <!-- email -->
+
+            <!-- phone -->
+            <div class="col-lg-6 col-md-12 col-sm-12">
+              <div class="form-group">
+                <label>Mobile Number</label>
+                <input type="text" class="form-control" formControlName="phone" />
+                <app-input-error [control]="addForm.get('phone')!" [fieldName]="'Mobile Number'" ></app-input-error>
+              </div>
+            </div>
+            <!-- phone -->
+
+            <!-- address -->
+            <div class="col-lg-6 col-md-12 col-sm-12">
+              <div class="form-group">
+                <label>Address</label>
+                <input type="text" class="form-control" formControlName="address" />
+                <app-input-error [control]="addForm.get('address')!" [fieldName]="'Address'" ></app-input-error>
+              </div>
+            </div>
+            <!-- address -->
+
+            <!-- address_2 -->
+            <div class="col-lg-6 col-md-12 col-sm-12">
+              <div class="form-group">
+                <label>Address 2</label>
+                <input type="text" class="form-control" formControlName="address_2" />
+              </div>
+            </div>
+            <!-- address_2 -->
+
+            <!-- city -->
+            <div class="col-lg-6 col-md-12 col-sm-12">
+              <div class="form-group">
+                <label>City</label>
+                <input type="text" class="form-control" formControlName="city" />
+                <app-input-error [control]="addForm.get('city')!" [fieldName]="'City'" ></app-input-error>
+              </div>
+            </div>
+            <!-- city -->
+
+            <!-- state -->
+            <div class="col-lg-6 col-md-12 col-sm-12">
+              <div class="form-group">
+                <label>State</label>
+                <input type="text" class="form-control" formControlName="state" />
+                <app-input-error [control]="addForm.get('state')!" [fieldName]="'State'" ></app-input-error>
+              </div>
+            </div>
+            <!-- state -->
+
+            <!-- country -->
+            <div class="col-lg-6 col-md-12 col-sm-12">
+              <div class="form-group">
+                <label>country</label>
+                <input type="text" class="form-control" formControlName="country" />
+                <app-input-error [control]="addForm.get('country')!" [fieldName]="'Country'" ></app-input-error>
+              </div>
+            </div>
+            <!-- country -->
+
+            <!-- pin_code -->
+            <div class="col-lg-6 col-md-12 col-sm-12">
+              <div class="form-group">
+                <label>Zip Code</label>
+                <input type="text" class="form-control" formControlName="pin_code" />
+                <app-input-error [control]="addForm.get('pin_code')!" [fieldName]="'Pincode'" ></app-input-error>
+
+              </div>
+            </div>
+            <!-- pin_code -->
+
+            <div class="flexCheck">
+              <div class="col-lg-1 chkBtn">
+                <label class="switch">
+                  <!-- <input type="checkbox" checked formControlName="isDefault"> -->
+                  <input
+                    #saveUserNameCheckBox
+                    id="saveUserNameCheckBox"
+                    type="checkbox"
+                    [checked]="saveUsername"
+                    formControlName="isDefault"
+                    (change)="onSaveUsernameChanged(saveUserNameCheckBox.checked)"
+                  />
+                  <span class="slider round"></span>
+                </label>
+              </div>
+              <p class="ptag">Default</p>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Model for customization-->
+<div class="modal fade" id="exampleModal8" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  ">
+        <h5 class="modal-title" id="exampleModalLabe3">Add Customization Option</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body p-3">
+        <form [formGroup]="addCustomizationForm" (ngSubmit)="onSubmitCustomization()">
+          <div class="row">
+            <!-- name -->
+            <div class="col-lg-12 col-md-12 col-sm-12">
+              <div class="form-group">
+                <label>Add Your Customization</label>
+                <textarea class="form-control" formControlName="customization" rows="5" cols="50"></textarea>
+              </div>
+            </div>
+            <!-- name -->
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- update address model -->
+<!-- Modal -->
+<div class="modal fade" id="updateAddress" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header" style="
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  ">
+        <h5 class="modal-title" id="exampleModalLabe3">Update Shipping Address</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body p-3">
+        <form [formGroup]="editForm" (ngSubmit)="onEditSubmit()">
+          <div class="row">
+            <!-- name -->
+            <div class="col-lg-6 col-md-12 col-sm-12">
+              <div class="form-group">
+                <label>First Name</label>
+                <input type="text" class="form-control" formControlName="name" />
+              </div>
+            </div>
+            <!-- name -->
+
+            <!-- email -->
+            <div class="col-lg-6 col-md-12 col-sm-12">
+              <div class="form-group">
+                <label>Email</label>
+                <input type="text" class="form-control" formControlName="email" />
+              </div>
+            </div>
+            <!-- email -->
+
+            <!-- phone -->
+            <div class="col-lg-6 col-md-12 col-sm-12">
+              <div class="form-group">
+                <label>Mobile Number</label>
+                <input type="text" class="form-control" formControlName="phone" />
+              </div>
+            </div>
+            <!-- phone -->
+
+            <!-- address -->
+            <div class="col-lg-6 col-md-12 col-sm-12">
+              <div class="form-group">
+                <label>Address</label>
+                <input type="text" class="form-control" formControlName="address" />
+              </div>
+            </div>
+            <!-- address -->
+
+            <!-- address_2 -->
+            <div class="col-lg-6 col-md-12 col-sm-12">
+              <div class="form-group">
+                <label>Address 2</label>
+                <input type="text" class="form-control" formControlName="address_2" />
+              </div>
+            </div>
+            <!-- address_2 -->
+
+            <!-- city -->
+            <div class="col-lg-6 col-md-12 col-sm-12">
+              <div class="form-group">
+                <label>City</label>
+                <input type="text" class="form-control" formControlName="city" />
+              </div>
+            </div>
+            <!-- city -->
+
+            <!-- state -->
+            <div class="col-lg-6 col-md-12 col-sm-12">
+              <div class="form-group">
+                <label>State</label>
+                <input type="text" class="form-control" formControlName="state" />
+              </div>
+            </div>
+            <!-- state -->
+
+            <!-- country -->
+            <div class="col-lg-6 col-md-12 col-sm-12">
+              <div class="form-group">
+                <label>country</label>
+                <input type="text" class="form-control" formControlName="country" />
+              </div>
+            </div>
+            <!-- country -->
+
+            <!-- pin_code -->
+            <div class="col-lg-6 col-md-12 col-sm-12">
+              <div class="form-group">
+                <label>Zip Code</label>
+                <input type="text" class="form-control" formControlName="pin_code" />
+              </div>
+            </div>
+            <!-- pin_code -->
+
+            <div class="col-lg-1 chkBtn">
+              <label class="switch">
+                <!-- <input type="checkbox" checked formControlName="isDefault"> -->
+                <input
+                [disabled]="isDefault==true ? true : false"
+                  #saveUserNameCheckBox
+                  id="saveUserNameCheckBox"
+                  type="checkbox"
+                  [checked]="saveUsername"
+                  formControlName="isDefault"
+                  (change)="onSaveUsernameChanged(saveUserNameCheckBox.checked)"
+                />
+                <span class="slider round"></span>
+              </label>
+            </div>
+            <p class="ptag">Default</p>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

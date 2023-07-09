@@ -1,0 +1,154 @@
+<section id="breadcrumbRow" class="row">
+  <div class="row pageTitle m0">
+    <div class="container">
+      <ul class="breadcrumb fright">
+        <li><a [routerLink]="['/']">home</a></li>
+        <li class="active">My Orders</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<div id="wrapper" class="container home_2">
+  <div class="row">
+    <div id="content-wrapper" class="col-lg-3 col-md-3 col-sm-3 col-12">
+      <section id="main">
+        <div class="profile-linking">
+          <ul>
+            <!-- <li class="profile-active">
+                <a href="edit-profile.html">Edit Profile</a>
+              </li> -->
+            <li><a [routerLink]="['/order-history']">My Order</a></li>
+            <!-- <li><a href="change-password.html">Change Password</a></li> -->
+            <li><a href="javascript:void(0)" (click)="logout()">Logout </a></li>
+          </ul>
+        </div>
+      </section>
+    </div>
+
+    <div id="content-wrapper" class="col-lg-9 col-md-9 col-sm-9 col-12">
+      <section id="main">
+        <section
+          class="page-content prc"
+          *ngIf="orderDetail | async; let info; else: loading"
+        >
+          <div class="authfy-login">
+            <!-- panel-login start -->
+            <div class="authfy-panel panel-login text-center active">
+              <div class="authfy-heading">
+                <div class="compl-ord">
+                  <h3 class="auth-title">Order Details</h3>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-xs-12 col-sm-12">
+                  <div class="table-responsive cartTable row m0">
+                    <table
+                      class="table table-bordered table-labeled hidden-sm-down"
+                    >
+                      <thead class="thead-default">
+                        <tr class="bg-danger">
+                          <th class="productImage">Item</th>
+                          <th>Name</th>
+                          <th style="text-align: center">Qty</th>
+                          <th style="text-align: center">Price</th>
+                          <th style="text-align: center">Total</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let item of info.data.order.items">
+                          <td class="productImage">
+                            <img [src]="item.product.images[0].sm" alt="" />
+                          </td>
+                          <td style="text-align: left">
+                            <h6 class="heading">
+                              <b>{{ item.product.name }}</b>
+                            </h6>
+                            <div class="row descList m0">
+                              <dl class="dl-horizontal">
+                                <dt>Color :</dt>
+                                <dd>
+                                  {{ item?.variant?.color | titlecase }}
+                                </dd>
+                                <dt>Size :</dt>
+                                <dd>
+                                  {{ item?.variant?.size | uppercase }}
+                                </dd>
+                              </dl>
+                            </div>
+                          </td>
+                          <td>{{ item.qty }}</td>
+                          <td>
+                            <i class="fa fa-inr"></i>
+                            {{ item.variant.sellingPrice }}
+                          </td>
+                          <td>
+                            <i class="fa fa-inr"></i>
+                            {{ item.qty * item.variant.sellingPrice }}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="col-xs-12 col-sm-12">
+                  <div class="row text-right">
+                    <div class="col-12">
+                      <h4>
+                        <b>Total:</b> &nbsp; <i class="fa fa-inr"></i>
+                        {{ info.data.order.total }}
+                      </h4>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- ./panel-login -->
+          </div>
+
+          <div
+            class="authfy-login p-4"
+            style="padding: 30px"
+            *ngIf="info.data.trackData?.length"
+          >
+            <ul class="list-group">
+              <li class="list-group-item" *ngFor="let t of info.data.trackData">
+                <!-- {{ t.tracking_data.track_status }} -->
+
+                <ul class="list-group">
+                  <li
+                    class="list-group-item"
+                    *ngFor="let v of t.tracking_data.shipment_track"
+                  >
+                    STATUS
+                    <span class="badge badge-info">
+                      {{ v.current_status }}
+                    </span>
+                  </li>
+                </ul>
+                <ul class="list-group">
+                  <li
+                    class="list-group-item"
+                    *ngFor="let v of t.tracking_data.shipment_track_activities"
+                  >
+                    <span class="badge badge-info">
+                      {{ v.activity }}
+                    </span>
+                    {{ v.location }} |
+                    <small> {{ v.date }}</small>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <ng-template #loading>
+          <section class="page-content prc">
+            <p>Loading...</p>
+          </section>
+        </ng-template>
+      </section>
+    </div>
+  </div>
+</div>

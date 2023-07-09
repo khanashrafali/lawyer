@@ -1,0 +1,60 @@
+<div class="col-sm-4 product">
+  <div class="productInner row m0">
+    <div class="row m0 imgHov">
+      <!-- <picture>
+        <source
+          *ngFor="let f of getSrcSet(p.images[0])"
+          [media]="{ minWidth: f.width }"
+          [srcset]="f.file"
+        /> -->
+
+      <!-- [srcset]="getSrcSet(p.images[0]) || 'assets/img/patients/patient.jpg'" -->
+      <img [src]="p.images[0]" [alt]="p.name" />
+      <!-- </picture> -->
+      <div class="row m0 hovArea">
+        <div class="row m0 icons">
+          <ul class="list-inline">
+            <li>
+              <a
+                href="javascript:void(0)"
+                (click)="addToWishList(p)"
+                style="background-color: white"
+                ><i
+                  [ngClass]="
+                    wishService.isInWishList(p._id)
+                      ? 'fa fa-heart wadd'
+                      : 'fa fa-heart '
+                  "
+                ></i
+              ></a>
+            </li>
+            <!-- <li>
+                <a href="#"><i class="fa fa-shopping-cart-alt"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="fa fa-expand"></i></a>
+              </li> -->
+          </ul>
+        </div>
+        <!-- <div class="row m0 proType"><a href="#">Baccarat</a></div> -->
+        <div class="row m0 proRating">
+          <div class="stars">
+            <star-rating
+              class="rating"
+              [numOfStars]="5"
+              [rating]="p.rating"
+              [readOnly]="true"
+            ></star-rating>
+          </div>
+        </div>
+        <div class="row m0 proPrice">
+          <i class="fa fa-inr"></i
+          >{{ p.variants[0]?.variant?.sellingPrice | number }}
+        </div>
+      </div>
+    </div>
+    <div class="row m0 proName">
+      <a [routerLink]="['/product', p?.slug]">{{ p.name | elipsis }}</a>
+    </div>
+  </div>
+</div>

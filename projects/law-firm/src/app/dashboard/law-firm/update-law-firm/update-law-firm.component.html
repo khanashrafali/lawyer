@@ -1,0 +1,215 @@
+<div class="page-wrapper">
+    <div class="content container-fluid">
+      <!-- Page Header -->
+      <div class="page-header">
+        <div class="row">
+          <div class="col-sm-7 col-auto">
+            <h3 class="page-title">Update Law Firm</h3>
+          </div>
+          <div class="col-sm-5 col">
+            <button (click)="location.back()" class="btn btn-primary btn-sm float-right mt-2"><i class="fa fa-arrow-left"></i> Back</button>
+          </div>
+        </div>
+      </div>
+      <!-- /Page Header -->
+      <div class="row">
+        <!-- <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <app-image-guideline>
+                <li>Sample Image: <a download="assets/img/category.png" href="assets/img/update-category.png">Download Sample Image</a></li>
+              </app-image-guideline>
+            </div>
+          </div>
+        </div> -->
+        <div class="col-sm-12">
+          <form>
+            <div class="card">
+              <div class="card-body">
+                <div class="row form-row">
+                  <!-- brandName -->
+                  <!-- brandName -->
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="validationServer02" class="required-label">Name</label>
+                      <!-- [ngClass]="
+                        form.get('brandName')?.touched ? (form.get('brandName')?.hasError('required') ? 'is-invalid' : 'is-valid') : ''
+                      " -->
+                      <input
+                        maxlength="50"
+                        type="text"
+                        class="form-control"
+                        id="validationServer02"
+                        placeholder="Name"
+                        required
+                        formControlName="brandName"
+                      />
+                      <!-- <app-input-error [control]="form.get('brandName')!" [fieldName]="'Name'"> </app-input-error> -->
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="validationServer02" class="required-label">Access</label>
+                      <!-- [ngClass]="
+                        form.get('brandName')?.touched ? (form.get('brandName')?.hasError('required') ? 'is-invalid' : 'is-valid') : ''
+                      " -->
+                      <input
+                        maxlength="50"
+                        type="text"
+                        class="form-control"
+                        id="validationServer02"
+                        placeholder="Name"
+                        required
+                        formControlName="brandName"
+                      />
+                      <!-- <app-input-error [control]="form.get('brandName')!" [fieldName]="'Name'"> </app-input-error> -->
+                    </div>
+                  </div>
+  
+                  <!-- categories -->
+                  <!-- <div class="col-6">
+                    <div class="form-group">
+                      <label for="validationServer01">Categories</label>
+                      <div class="rounded-sm">
+                        <ng-select
+                          #col
+                          [searchable]="true"
+                          [notFoundText]="'No items found.'"
+                          [closeOnSelect]="false"
+                          [items]="categories"
+                          [multiple]="true"
+                          [placeholder]="'---select categories---'"
+                          formControlName="categories"
+                          bindValue="_id"
+                          bindLabel="name"
+                        >
+                          <ng-template ng-header-tmp>
+                            <div class="d-flex justify-content-lg-between">
+                              <div>
+                                <button
+                                  type="button"
+                                  class="btn btn-link"
+                                  (click)="onSelectAll()"
+                                >
+                                  Select All
+                                </button>
+                                <button
+                                  type="button"
+                                  class="btn btn-link"
+                                  (click)="onClearAll()"
+                                >
+                                  Clear All
+                                </button>
+                              </div>
+                              <button
+                                (click)="col.close()"
+                                type="button"
+                                class="btn btn-link"
+                              >
+                                <i class="fa fa-close"></i>
+                              </button>
+                            </div>
+                          </ng-template>
+                          <ng-template
+                            ng-option-tmp
+                            let-item="item"
+                            let-item$="item$"
+                            let-index="index"
+                          >
+                            <input
+                              id="item-{{ index }}"
+                              type="checkbox"
+                              [checked]="item$.selected"
+                            />
+                            &nbsp; {{ item.name }}
+                          </ng-template>
+                        </ng-select>
+                      </div>
+                      <app-input-error
+                        [control]="form.get('categories')!"
+                        [fieldName]="'Categories'"
+                      >
+                      </app-input-error>
+                    </div>
+                  </div> -->
+                  <!-- categories -->
+  
+                  <!-- isApproved -->
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for=""><b> Active</b></label>
+                      <input
+                        formControlName="isApproved"
+                        type="checkbox"
+                        id="status_f"
+                        [ngClass]="true ? 'check active' : 'check'"
+                      />
+  
+                      <label for="status_f" class="checktoggle">checkbox</label>
+                    </div>
+                  </div>
+                  <!-- isApproved -->
+  
+                  <!-- <div class="col-sm-7 col-auto">
+                    <label for="validationServer02" class="required-label">Image</label>
+                  </div> -->
+  
+                  <!-- <div class="col-sm-5 col">
+                    <input
+                      [hidden]="true"
+                      multiple
+                      (focus)="form.get('image')?.markAsTouched()"
+                      (change)="chooseFile($event, 'image', false)"
+                      type="file"
+                      accept="image/*"
+                      class="form-control"
+                      id="validationServer02"
+                      #image
+                    />
+                    <button *ngIf="!imageSrc" type="button" (click)="image.click()" class="btn btn-primary btn-sm float-right mt-2">
+                      <i class="fa fa-upload"></i> Pick Image
+                    </button>
+                  </div> -->
+  
+                  <!-- <div class="col-12" *ngIf="!form.get('image')?.value && !imageSrc">
+                    <small class="text-danger">Image is required.</small>
+                  </div> -->
+                  <!-- <div class="col-12">
+                    <div *ngIf="imageSrc" class="d-flex align-content-start pt-2">
+                      <div class="d-flex">
+                        <a [href]="imageSrc" data-fancybox="gallery">
+                          <img class="img-thumbnail" style="height: 100px" [src]="imageSrc" />
+                        </a>
+  
+                        *ngIf="isEdit"
+                        <div (click)="removebrandLogo('image', false)" class="mb-1 cursor trashImage">
+                          <i class="fa fa-trash-o text-danger"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+  
+            <button class="btn btn-primary float-right" type="submit">
+              <span class="spinner-border spinner-border-sm mr-2" role="status"></span>
+              Save
+            </button>
+            <br /><br />
+            <br /><br />
+            <!-- businessAddress -->
+          </form>
+        </div>
+        <!-- <div class="col-sm-12">
+          <div class="card">
+            <div class="card-body">
+              <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            </div>
+          </div>
+        </div> -->
+        <!-- /ADD Modal -->
+      </div>
+    </div>
+  </div>
+  

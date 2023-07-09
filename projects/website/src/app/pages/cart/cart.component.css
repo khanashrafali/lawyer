@@ -1,0 +1,324 @@
+/* .nodata {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 25px 0px 25px 0px;
+  border: 1px solid #dcdcdc;
+  border-top: none;
+  margin-top: -10px;
+}
+#btnClass:hover {
+  color: rgb(80, 45, 45) !important;
+}
+.spinner {
+  margin: 0px auto !important;
+} */
+
+/* .home_2 {
+  min-height: 100vh;
+} */
+
+
+.wfl {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.wfl del {
+  order: 2;
+  font-size: 19px;
+}
+
+.wfl div {
+  font-size: 23px;
+  display: flex;
+  gap: 4px;
+}
+
+.cartTable .table tbody tr td .heading b {
+  font-size: 25px;
+}
+
+td.productName a {
+  text-decoration: underline;
+  font-size: 18px;
+}
+
+.tra .edit {
+  background: unset;
+  color: #d9098c;
+  padding: 0;
+  margin: 0;
+}
+h6.heading b {
+  font-size: 23px;
+}
+.cartTable .table tbody tr td:first-child {
+  width: 160px;
+  text-align: center;
+}
+.cartPage .pageHeading {
+  margin-bottom: 50px;
+  font-weight: 600;
+}
+.cartPage .pageHeading {
+  margin-bottom: 50px;
+  margin-bottom: 20px;
+     margin-top: 60px;
+  font-weight: 800;
+}
+
+.fright {
+  float: unset;
+  margin-bottom: 20px;
+  display: block;
+}	
+.row.descList.m0 {
+  height: fit-content;
+  margin-bottom: 0;
+}
+
+.cartTable .table tfoot tr td a.fright {
+  width: fit-content;
+  border: none;
+  padding: 0;
+  text-align: right;
+  width: 100%;
+  margin: 0;
+}
+.cartTable .table tbody tr td .heading b {
+  font-size: 20px;
+}
+.cleFl {
+  display: flex;
+  align-items: center;
+}
+
+a.btn.btn-default.btn-lg.fright.cl {
+  font-size: 18px;
+  text-transform: capitalize;
+  color: #d9098c;
+  text-decoration: underline;
+}
+
+a.btn.btn-primary.btn-lg.cont {
+  background: #d9098c;
+  width: fit-content;
+  border: 1px solid #d9098c;
+  color: #fff;
+  padding: 0;
+  padding: 1px 15px;
+  text-transform: capitalize;
+  padding-right: 40px;
+}
+
+.cleFl {
+  justify-content: space-between;
+}
+dl.dl-horizontal.sizeNe {
+  display: flex;
+  text-align: left;
+  gap: 14px;
+}
+
+dl.dl-horizontal.sizeNe dd {
+  font-weight: 700;
+  font-size: 20px;
+  color: #000;
+}
+
+dl.dl-horizontal.sizeNe:before {
+  display: none;
+}
+
+dl.dl-horizontal.sizeNe dd:before {
+  display: none;
+}
+
+dl.dl-horizontal.sizeNe dd:after {
+  display: none;
+}
+
+dl.dl-horizontal.sizeNe dt {
+  width: fit-content;
+  line-height: 2;
+}
+
+.row.descList.m0:before {
+  display: none;
+}
+
+.row.descList.m0:after {
+  display: none;
+}
+td.productImage img {
+  width: 50% !important;
+  border: 1px solid #ccc;
+}
+.table-bordered {
+  border: none;
+}
+td.not {
+  border: none !important;
+  font-size: 25px;
+  padding-top: 50px !important;
+}
+.input-group-btn-vertical {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-group-btn-vertical input {
+  width: 110px !important;
+  text-align: center;
+color:#000;
+}
+table.table tr:nth-child(even) {
+  background: white;
+}
+
+.btn.btn-default {
+  border: 1px solid #acacac;
+}
+.wfl {
+  text-align: left;
+  justify-content: left !important;
+}
+.cartTable .table thead tr th {
+  background: #a5a5a5;
+  color: #fff;
+}
+.cartTable {
+  margin-bottom: 0;
+}
+
+
+.descList.row.m0 a {
+}
+
+.descList.row.m0 dt {
+  font-size: 16px !important;
+  position: relative;
+  top: 6px;
+}
+
+.descList.row.m0 {
+  margin-bottom: 10px !important;
+}
+
+.row.descList.m0 dd {
+  font-size: 35px !important;
+}
+
+.totalGrand {
+  width: 420px;
+}
+
+dl.dl-horizontal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+dt.gt {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.totalCheckout .descList dl dt {
+  width: fit-content;
+}
+
+a#btnClass {
+  width: 100%;
+  margin-top: 20px;
+  padding: 15px;
+}
+dl.dl-horizontal.sizeNe {
+  justify-content: start;
+}
+
+.row.descList.m0 dl.dl-horizontal.sizeNe dd {
+  position: relative;
+  top: 6px;
+  font-size: 24px !important;
+  color: #d9098c;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 991px)
+{
+
+#breadcrumbRow .pageTitle {
+  z-index: 99999;
+  position: relative;
+  text-align: center;
+  background: #fff;
+}
+
+#breadcrumbRow .pageTitle ul li {
+  font-size: 20px;
+}
+.cartTable .table tbody tr td:nth-child(2) .descList dl dt {
+  float: left;
+  min-width: unset;
+}
+.totalGrand {
+  width: 100%;
+  margin-top: 20px;
+}
+.cleFl {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+
+a.btn.btn-primary.btn-lg.cont {
+  padding-right: 20px;
+}
+
+.cartTable .table tfoot tr td a.fright {
+  text-align: left;
+}
+.input-group-btn-vertical input {
+  width: 50px !important;
+  text-align: center;
+  color: #000;
+}
+.cartPage .pageHeading { 
+  margin-top: 20px; 
+}
+.cleFl {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start !important;
+}
+.cartTable .table tfoot tr td a.fright {
+  text-align: left;
+}
+.totalGrand {
+  width: 100%;
+  margin-top: 20px;
+}
+
+
+
+
+}
+

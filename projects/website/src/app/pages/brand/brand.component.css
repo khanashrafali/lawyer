@@ -1,0 +1,15 @@
+.product2 .thumbnail .productIntro .heading a {
+    color: #222;
+    text-align: center;
+    padding-bottom: 28px;
+}
+
+.product2 .thumbnail .imgHov img {
+    width: 100%;
+    object-fit: cover;
+    height: 235px;
+}
+
+/* .home_1 {
+    min-height: 100vh;
+} */

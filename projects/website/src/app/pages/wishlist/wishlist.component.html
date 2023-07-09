@@ -1,0 +1,43 @@
+<section id="breadcrumbRow" class="row">
+  <h2>Wishlist</h2>
+  <div class="row pageTitle m0">
+    <div class="container">
+      <h4 class="fleft">Wishlist</h4>
+      <ul class="breadcrumb fright">
+        <li><a [routerLink]="['/']">home</a></li>
+        <li class="active">Wishlist</li>
+      </ul>
+    </div>
+  </div>
+</section>
+<section class="row contentRowPad home_2" *ngIf="wishListData | async; let wd; else: loading">
+  <div class="container">
+    <div class="cartPage">
+      <h3 class="heading pageHeading">Wishlist</h3>
+      <div class="table-responsive cartTable row m0">
+        <table class="table">
+          <thead>
+            <tr>
+              <th class="productImage">Product image</th>
+              <th class="productName">Product name</th>
+              <th class="text-center">price</th>
+              <th class="text-center">remove</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngIf="!wd.length">
+              <tr>
+                <td colspan="4">Item Not Found.</td>
+              </tr>
+            </ng-container>
+            <ng-container *ngIf="wd.length">
+              <tr class="alert" role="alert" app-wish-item *ngFor="let item of wd" [wItem]="item"></tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #loading> Loading... </ng-template>
